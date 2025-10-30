@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
-import HeroSection from "./HeroSection";
-import Features from "./Features";
-import ProductCard from "./ProductCard";
-import CallToAction from "./CallToAction";
-import NewsletterModal from "./NewsletterModal";
-import Footer from "./Footer";
+import Navbar from "./components/Navbar.jsx";
+import HeroSection from "./components/HeroSection.jsx";
+import Features from "./components/Features";
+import ProductCard from "./components/ProductCard.jsx";
+import CallToAction from "./components/CallToAction.jsx";
+import NewsletterModal from "./components/NewsletterModal.jsx";
+import Footer from "./components/Footer.jsx";
 
 const productsSample = [
   {
