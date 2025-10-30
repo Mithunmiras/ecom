@@ -12,25 +12,25 @@ export default function HeroSection({ onOpenNewsletter }) {
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-violet-500 text-white px-4 py-2 rounded-full text-sm font-semibold opacity-0 animate-fadeInUp shadow-lg">
             <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-            New Collection 2025
+            Fresh & Fast
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight opacity-0 animate-fadeInUp animation-delay-100">
-            <span className="bg-gradient-to-r from-purple-600 via-violet-600 to-fuchsia-600 bg-clip-text text-transparent">Jewellery that tells</span>
+            <span className="bg-gradient-to-r from-purple-600 via-violet-600 to-fuchsia-600 bg-clip-text text-transparent">Meals delivered</span>
             <br />
-            <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-purple-600 bg-clip-text text-transparent">your story.</span>
+            <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-purple-600 bg-clip-text text-transparent">to your door.</span>
           </h1>
 
-          <p className="text-slate-600 text-lg max-w-xl opacity-0 animate-fadeInUp animation-delay-200 leading-relaxed">Handcrafted pieces inspired by heritage and modern silhouettes. Sustainably sourced stones, ethical practices, and a lifetime of care.</p>
+          <p className="text-slate-600 text-lg max-w-xl opacity-0 animate-fadeInUp animation-delay-200 leading-relaxed">Delicious restaurant-quality meals, ready in minutes. Track your order and enjoy exclusive daily offers.</p>
 
           <div className="flex flex-wrap gap-4 opacity-0 animate-fadeInUp animation-delay-300">
-            <a href="/collections" className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-violet-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold">
-              Shop Collection
+            <a href="/menu" className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-violet-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold">
+              Order Now
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
 
             <button onClick={onOpenNewsletter} className="inline-flex items-center gap-2 bg-white text-purple-600 px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold border-2 border-purple-200">
-              Join Newsletter
+              Get Offers
             </button>
           </div>
 

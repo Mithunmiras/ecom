@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#fff" />
+  <defs>
+    <linearGradient id="d" x1="0" x2="1">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#ef476f"/>
+    </linearGradient>
+  </defs>
+  <rect x="40" y="40" width="720" height="420" rx="24" fill="url(#d)" />
+  <text x="260" y="160" font-size="40" font-family="sans-serif" fill="#fff" font-weight="700">Coastline</text>
+  <text x="260" y="210" font-size="22" fill="#fff">Fresh seafood plates</text>
+</svg>

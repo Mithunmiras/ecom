@@ -9,10 +9,10 @@ export default function Footer() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
         <div>
           <a href="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 via-violet-400 to-fuchsia-400 flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">LJ</div>
+            <img src="/logo.svg" alt="QuickBite" className="w-12 h-12 rounded-full object-cover shadow-lg group-hover:scale-110 transition-transform duration-300" />
             <div>
-              <div className="font-bold text-lg bg-gradient-to-r from-purple-200 to-violet-200 bg-clip-text text-transparent">LuxeJewels</div>
-              <div className="text-sm text-purple-300">Fine Jewellery</div>
+              <div className="font-bold text-lg bg-gradient-to-r from-purple-200 to-violet-200 bg-clip-text text-transparent">QuickBite</div>
+              <div className="text-sm text-purple-300">Fresh meals, delivered fast</div>
             </div>
           </a>
 
@@ -21,20 +21,20 @@ export default function Footer() {
 
         <div className="flex gap-12">
           <div>
-            <h4 className="font-bold mb-4 text-purple-200">Shop</h4>
+        <h4 className="font-bold mb-4 text-purple-200">Order</h4>
             <ul className="text-sm text-purple-300 space-y-3">
-              <li><a href="/collections" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Collections</a></li>
-              <li><a href="/custom" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Custom</a></li>
-              <li><a href="/gift-cards" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Gift Cards</a></li>
+          <li><a href="/menu" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Menu</a></li>
+          <li><a href="/offers" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Offers</a></li>
+          <li><a href="/gift-cards" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Gift Cards</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-4 text-purple-200">Company</h4>
+        <h4 className="font-bold mb-4 text-purple-200">Company</h4>
             <ul className="text-sm text-purple-300 space-y-3">
-              <li><a href="/about" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">About</a></li>
-              <li><a href="/press" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Press</a></li>
-              <li><a href="/careers" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Careers</a></li>
+          <li><a href="/about" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">About</a></li>
+          <li><a href="/press" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Press</a></li>
+          <li><a href="/careers" className="hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Careers</a></li>
             </ul>
           </div>
         </div>
