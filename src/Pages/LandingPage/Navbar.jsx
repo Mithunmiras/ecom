@@ -2,10 +2,10 @@ import React from "react";
 
 export default function Navbar({ onOpenNewsletter }) {
   return (
-    <header className="backdrop-blur-sm bg-white/80 sticky top-0 z-40 border-b border-slate-100">
+    <header className="backdrop-blur-sm bg-white/80 sticky top-0 z-40 border-b border-slate-100 opacity-0 animate-fadeIn">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-amber-400 flex items-center justify-center text-white font-semibold">LJ</div>
+        <a href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-amber-400 flex items-center justify-center text-white font-semibold hover:rotate-12 transition-transform duration-300">LJ</div>
           <div>
             <div className="text-sm font-semibold">LuxeJewels</div>
             <div className="text-xs text-slate-500 -mt-1">Fine Jewellery</div>
@@ -13,14 +13,14 @@ export default function Navbar({ onOpenNewsletter }) {
         </a>
 
         <nav className="hidden md:flex gap-6 items-center text-sm">
-          <a href="/collections" className="text-slate-700 hover:text-slate-900">Collections</a>
-          <a href="/about" className="text-slate-700 hover:text-slate-900">About</a>
-          <a href="/contact" className="text-slate-700 hover:text-slate-900">Contact</a>
-          <button onClick={onOpenNewsletter} className="px-4 py-2 bg-slate-900 text-white rounded-md">Subscribe</button>
+          <a href="/collections" className="text-slate-700 hover:text-slate-900 hover:scale-110 transition-all duration-300">Collections</a>
+          <a href="/about" className="text-slate-700 hover:text-slate-900 hover:scale-110 transition-all duration-300">About</a>
+          <a href="/contact" className="text-slate-700 hover:text-slate-900 hover:scale-110 transition-all duration-300">Contact</a>
+          <button onClick={onOpenNewsletter} className="px-4 py-2 bg-slate-900 text-white rounded-md hover:bg-black hover:scale-105 transition-all duration-300">Subscribe</button>
         </nav>
 
         <div className="md:hidden">
-          <a href="/collections" className="px-3 py-2 rounded-md bg-slate-900 text-white text-sm">Shop</a>
+          <a href="/collections" className="px-3 py-2 rounded-md bg-slate-900 text-white text-sm hover:bg-black hover:scale-105 transition-all duration-300">Shop</a>
         </div>
       </div>
     </header>
