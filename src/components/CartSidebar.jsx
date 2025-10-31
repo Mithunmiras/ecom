@@ -31,10 +31,10 @@ export default function CartSidebar() {
           isCartOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white p-6 flex items-center justify-between">
+  <div className="bg-gradient-to-r from-purple-600 to-violet-600 text-white p-6 flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold">Your Cart</h2>
-            <p className="text-orange-100 text-sm">{getTotalItems()} items</p>
+            <p className="text-purple-100 text-sm">{getTotalItems()} items</p>
           </div>
           <button
             onClick={() => setIsCartOpen(false)}
@@ -54,7 +54,7 @@ export default function CartSidebar() {
               <p className="text-slate-500 mb-6">Add some delicious items to get started!</p>
               <button
                 onClick={() => setIsCartOpen(false)}
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full font-semibold hover:shadow-lg transition-all duration-300"
+                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-full font-semibold hover:shadow-lg transition-all duration-300"
               >
                 Browse Menu
               </button>
@@ -76,19 +76,19 @@ export default function CartSidebar() {
 
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-slate-900 mb-1 truncate">{item.name}</h3>
-                    <p className="text-sm font-bold text-orange-600 mb-2">{item.price}</p>
+                    <p className="text-sm font-bold text-purple-600 mb-2">{item.price}</p>
 
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="w-7 h-7 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center hover:border-orange-500 hover:text-orange-600 transition-colors duration-300 font-bold"
+                        className="w-7 h-7 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center hover:border-purple-600 hover:text-purple-600 transition-colors duration-300 font-bold"
                       >
                         −
                       </button>
                       <span className="w-8 text-center font-bold text-slate-700">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="w-7 h-7 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center hover:border-orange-500 hover:text-orange-600 transition-colors duration-300 font-bold"
+                        className="w-7 h-7 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center hover:border-purple-600 hover:text-purple-600 transition-colors duration-300 font-bold"
                       >
                         +
                       </button>
@@ -97,7 +97,7 @@ export default function CartSidebar() {
 
                   <button
                     onClick={() => removeFromCart(item.id)}
-                    className="text-slate-400 hover:text-red-500 transition-colors duration-300"
+                    className="text-slate-400 hover:text-purple-600 transition-colors duration-300"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -127,13 +127,13 @@ export default function CartSidebar() {
                 <span>Delivery Fee</span>
                 <span className="font-semibold text-green-600">Free</span>
               </div>
-              <div className="flex justify-between text-lg font-bold text-slate-900 pt-3 border-t border-slate-300">
+                <div className="flex justify-between text-lg font-bold text-slate-900 pt-3 border-t border-slate-300">
                 <span>Total</span>
-                <span className="text-orange-600">{formatPrice()}</span>
+                <span className="text-purple-600">{formatPrice()}</span>
               </div>
             </div>
 
-            <button className="w-full py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full font-bold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
+            <button className="w-full py-4 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-full font-bold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
               Proceed to Checkout
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

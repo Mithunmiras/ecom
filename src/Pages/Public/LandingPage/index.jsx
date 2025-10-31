@@ -7,7 +7,7 @@ import NewsletterModal from "./components/NewsletterModal.jsx";
 import KeyFeatures from "./components/KeyFeatures.jsx";
 import Footer from "../../../layouts/footer/Index.jsx";
 import CircularGallery from "./components/CircularGallery.jsx";
-import ProductList from "../../../components/ProductList.jsx";
+import ProductList from "./components/ProductList.jsx";
 import CartSidebar from "../../../components/CartSidebar.jsx";
 
 const productsSample = [
@@ -46,13 +46,18 @@ export default function LandingPage() {
   const [subscribed, setSubscribed] = useState(false);
 
   return (
-    <div className="bg-gradient-to-br from-slate-50 via-orange-50 to-red-50 text-slate-900 antialiased min-h-screen">
+  <div className="bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50 text-slate-900 antialiased min-h-screen">
       <Navbar onOpenNewsletter={() => setOpenNewsletter(true)} />
       <CartSidebar />
 
       <main className="relative">
         <HeroSection onOpenNewsletter={() => setOpenNewsletter(true)} />
 
+        {/* Featured Restaurants moved below the product listing */}
+
+        <ProductList />
+
+        {/* Featured Restaurants (moved below product listing) */}
         <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-12">
           <div className="opacity-0 animate-fadeInUp animation-delay-200">
             <h2 className="text-2xl font-bold text-center mb-6">Featured Restaurants</h2>
@@ -61,8 +66,6 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
-        <ProductList />
 
         <KeyFeatures />
 

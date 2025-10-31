@@ -67,7 +67,7 @@ const KeyFeatures = () => {
   ];
 
   return (
-    <section className="key-features">
+  <section className="key-features bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50">
       <div className="container">
         {/* Section Header */}
         <div className="features-header">
