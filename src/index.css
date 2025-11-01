@@ -1,5 +1,34 @@
 @import "tailwindcss";
 
+/* Design tokens */
+:root {
+  --primary-gold: #B8860B; /* Luxurious gold accents */
+  --dark-gold: #8B4513;    /* Rich brown-gold */
+  --light-gold: #DAA520;   /* Bright highlights */
+  --accent-gold: #FFD700;  /* Vibrant accents */
+  --bg: #f8f8f8;           /* Clean, elegant */
+  --text: #2c2c2c;         /* Professional dark */
+  --bg-light: #f7f7f7;     /* Section light background */
+  --white: #ffffff;        /* Pure white */
+  --text-light: #6b7280;   /* Muted text */
+}
+
+/* Typography */
+html, body {
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+/* Utility font classes */
+.font-playfair {
+  font-family: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -95,4 +124,50 @@
 
 .animation-delay-600 {
   animation-delay: 0.6s;
+}
+
+/* Utility helpers mapped to our palette (optional, used alongside Tailwind) */
+.text-gold { color: var(--primary-gold); }
+.text-gold-dark { color: var(--dark-gold); }
+.text-gold-accent { color: var(--accent-gold); }
+.bg-gold { background-color: var(--primary-gold); }
+.bg-gold-dark { background-color: var(--dark-gold); }
+.border-gold { border-color: var(--primary-gold); }
+
+/* Features section (optional CSS approach alongside Tailwind) */
+.features {
+  background: var(--bg-light);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  text-align: center;
+  padding: 2rem;
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--primary-gold), var(--light-gold));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 2rem;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+  color: var(--text-light);
 }
