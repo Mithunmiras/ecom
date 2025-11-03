@@ -10,12 +10,12 @@ const infoCards = [
   {
     icon: 'fa-phone',
     title: 'Call Us',
-    content: ['Phone: +1 (234) 567-890', 'Toll-Free: 1-800-LUXE-GEM', 'Mon-Fri: 9AM - 6PM EST']
+    content: ['Phone: +1 (234) 567-890', 'Toll-Free: 1-800-OMNIBRIX', 'Mon-Fri: 9AM - 6PM EST']
   },
   {
     icon: 'fa-envelope',
     title: 'Email Us',
-    content: ['General: info@luxejewels.com', 'Support: support@luxejewels.com', 'Sales: sales@luxejewels.com']
+    content: ['General: info@omnibrix.com', 'Support: support@omnibrix.com', 'Sales: sales@omnibrix.com']
   },
   {
     icon: 'fa-clock',
@@ -33,7 +33,7 @@ export default function ContactInfo() {
         <div className="space-y-4">
           {infoCards.map((card, idx) => (
             <div key={idx} className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-full bg-[#C99700] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-full bg-[#06B6D4] flex items-center justify-center flex-shrink-0">
                 <i className={`fas ${card.icon} text-white text-lg`} aria-hidden="true"></i>
               </div>
               <div>
@@ -56,7 +56,7 @@ export default function ContactInfo() {
               <a
                 key={i}
                 href="#"
-                className="w-12 h-12 rounded-full bg-white border-2 border-[#C99700] flex items-center justify-center text-[#C99700] hover:bg-[#C99700] hover:text-white transition-colors shadow-sm"
+                className="w-12 h-12 rounded-full bg-white border-2 border-[#06B6D4] flex items-center justify-center text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white transition-colors shadow-sm"
               >
                 <i className={`fab ${icon}`} aria-hidden="true"></i>
               </a>

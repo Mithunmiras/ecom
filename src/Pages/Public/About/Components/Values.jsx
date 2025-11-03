@@ -1,55 +1,69 @@
 import React from 'react';
-import Reveal from '../../../../components/Reveal.jsx';
 
-const items = [
+const values = [
   {
-    icon: 'fa-gem',
-    title: 'Quality Craftsmanship',
-    text: 'Every piece is handcrafted with meticulous attention to detail, using only the finest materials and gemstones sourced from trusted suppliers worldwide.'
+    icon: 'fas fa-lightbulb',
+    title: 'Innovation First',
+    description: "We push the boundaries of what's possible with AI, constantly exploring new technologies and methodologies to deliver cutting-edge solutions.",
+    delay: '0.1s'
   },
   {
-    icon: 'fa-heart',
-    title: 'Passion for Design',
-    text: 'Our designers are driven by a passion for creating jewelry that tells stories, evokes emotions, and celebrates the beauty of life\'s special moments.'
+    icon: 'fas fa-trophy',
+    title: 'Excellence',
+    description: "We're committed to delivering exceptional quality in everything we do, from code to customer service. Mediocrity is not in our vocabulary.",
+    delay: '0.2s'
   },
   {
-    icon: 'fa-leaf',
-    title: 'Sustainable Practices',
-    text: 'We are committed to ethical sourcing and sustainable practices, ensuring that our creations are as responsible as they are beautiful.'
+    icon: 'fas fa-hands-helping',
+    title: 'Client Success',
+    description: 'Your success is our success. We measure our achievements by the tangible value we create for your business and the problems we solve.',
+    delay: '0.3s'
   },
   {
-    icon: 'fa-users',
-    title: 'Customer First',
-    text: 'Your satisfaction is our priority. We provide personalized service, expert guidance, and lifetime support for every piece you purchase.'
+    icon: 'fas fa-unlock',
+    title: 'Transparency',
+    description: 'No hidden fees, no black boxes. We believe in clear communication, honest pricing, and explainable AI that you can trust.',
+    delay: '0.4s'
+  },
+  {
+    icon: 'fas fa-users',
+    title: 'Collaboration',
+    description: 'We work as an extension of your team, fostering partnerships built on mutual respect, open communication, and shared goals.',
+    delay: '0.5s'
+  },
+  {
+    icon: 'fas fa-balance-scale',
+    title: 'Ethical AI',
+    description: 'We develop AI responsibly, ensuring our solutions are fair, unbiased, and designed to augment human capabilities, not replace them.',
+    delay: '0.6s'
   }
 ];
 
 export default function Values() {
   return (
-    <section className="py-16 md:py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto">
-          <Reveal animation="animate-fadeInUp">
-            <h2 className="text-3xl md:text-4xl font-bold font-playfair text-slate-900">Our Values</h2>
-            <p className="mt-2 text-slate-600">What makes us different</p>
-          </Reveal>
+    <section className="values-section section">
+      <div className="container">
+        <div className="section-header">
+          <span className="section-badge scroll-reveal">Our Values</span>
+          <h2 className="section-title scroll-reveal">What Drives Us</h2>
+          <p className="section-subtitle scroll-reveal">
+            The principles that guide our work and relationships
+          </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {items.map((it, idx) => (
-            <Reveal
-              key={idx}
-              animation="animate-scaleIn"
-              delay={idx === 0 ? '' : idx === 1 ? 'animation-delay-100' : idx === 2 ? 'animation-delay-200' : 'animation-delay-300'}
+        <div className="values-grid">
+          {values.map((value, index) => (
+            <div
+              key={index}
+              className="value-card scroll-reveal"
+              style={{ animationDelay: value.delay }}
             >
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 text-center hover:shadow-md transition-shadow">
-                <div className="mx-auto w-16 h-16 rounded-full bg-[#C99700] flex items-center justify-center shadow-md">
-                  <i className={`fas ${it.icon} text-white text-xl`} aria-hidden="true"></i>
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-slate-900">{it.title}</h3>
-                <p className="mt-2 text-sm text-slate-600">{it.text}</p>
+              <div className="value-icon">
+                <i className={value.icon}></i>
               </div>
-            </Reveal>
+              <h3>{value.title}</h3>
+              <p>{value.description}</p>
+            </div>
           ))}
         </div>
       </div>

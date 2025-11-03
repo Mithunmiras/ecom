@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     question: 'Do you offer jewelry cleaning services?',
-    answer: 'Yes! We offer complimentary cleaning services for all jewelry purchased from Luxe Jewels. Visit our store or mail your pieces to us.'
+  answer: 'Yes! We offer complimentary onboarding and technical reviews for our AI solutions. Contact our support team to arrange a review.'
   },
   {
     question: 'Can I customize a piece?',
@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     question: 'Do you offer financing options?',
-    answer: 'Yes, we offer flexible financing options through our partners. Apply at checkout for instant approval. Terms and conditions apply.'
+    answer: 'We offer flexible procurement and pricing options for enterprise engagements. Contact sales for tailored proposals.'
   }
 ];
 
@@ -42,7 +42,7 @@ function FAQItem({ faq, index }) {
           className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition-colors"
         >
           <span className="font-semibold text-slate-900 pr-4">{faq.question}</span>
-          <i className={`fas fa-chevron-down text-[#C99700] transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true"></i>
+          <i className={`fas fa-chevron-down text-[#06B6D4] transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true"></i>
         </button>
         <div
           className={`px-6 overflow-hidden transition-all duration-300 ${

@@ -1,61 +1,91 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ThemeContext } from "../../themes/ThemeProvider";
 
 export default function Header() {
-  const theme = useContext(ThemeContext);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.pageYOffset > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const menuItems = [
     { label: "Home", path: "/" },
-    { label: "Collections", path: "/collections" },
     { label: "About", path: "/about" },
     { label: "Contact", path: "/contact" },
   ];
 
   return (
-    <header className="bg-white/70 backdrop-blur sticky top-0 z-50 border-b">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-amber-400 flex items-center justify-center text-white font-semibold">LJ</div>
-          <div>
-            <div className="font-semibold">LuxeJewels</div>
-            <div className="text-xs text-slate-500">Fine Jewellery</div>
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`} id="header">
+      <nav className="nav container">
+        <a href="/" className="nav-logo" onClick={(e) => { e.preventDefault(); navigate('/'); }}>
+          <div className="logo-icon">
+            <svg viewBox="0 0 40 40" width="40" height="40">
+              <circle cx="20" cy="20" r="3" fill="#00ACD4" className="pulse-dot"/>
+              <circle cx="10" cy="10" r="2" fill="#00ACD4" opacity="0.8"/>
+              <circle cx="30" cy="10" r="2" fill="#00ACD4" opacity="0.8"/>
+              <circle cx="10" cy="30" r="2" fill="#00ACD4" opacity="0.8"/>
+              <circle cx="30" cy="30" r="2" fill="#00ACD4" opacity="0.8"/>
+              <circle cx="20" cy="5" r="1.5" fill="#86E3CE" opacity="0.6"/>
+              <circle cx="35" cy="20" r="1.5" fill="#86E3CE" opacity="0.6"/>
+              <circle cx="20" cy="35" r="1.5" fill="#86E3CE" opacity="0.6"/>
+              <circle cx="5" cy="20" r="1.5" fill="#86E3CE" opacity="0.6"/>
+            </svg>
           </div>
+          <span className="logo-text">
+            <span className="logo-omni">omni</span>
+            <span className="logo-brix">brix</span>
+          </span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-8 font-medium">
-          {menuItems.map((item) => (
-            <button
-              key={item.label}
-              onClick={() => navigate(item.path)}
-              className={`hover:opacity-80 ${location.pathname === item.path ? "text-rose-600" : "text-slate-700"}`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </nav>
-
-        <div className="hidden md:flex items-center gap-4">
-          <a href="/collections" className="px-4 py-2 bg-slate-900 text-white rounded-md">Shop</a>
-          <button onClick={() => navigate('/contact')} className="px-4 py-2 border border-slate-200 rounded-md">Contact</button>
-        </div>
-
-        <button className="md:hidden p-2" onClick={() => setMobileOpen((s) => !s)}>{mobileOpen ? '✖' : '☰'}</button>
-      </div>
-
-      {mobileOpen && (
-        <div className="md:hidden bg-white shadow-lg border-t">
-          <div className="px-6 py-4 space-y-3">
+        <div className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`} id="navMenu">
+          <ul className="nav-list">
             {menuItems.map((item) => (
-              <button key={item.label} onClick={() => { navigate(item.path); setMobileOpen(false); }} className="block w-full text-left py-2">{item.label}</button>
+              <li key={item.path} className="nav-item">
+                <a 
+                  href={item.path} 
+                  className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                  onClick={(e) => { 
+                    e.preventDefault(); 
+                    navigate(item.path);
+                    setIsMobileMenuOpen(false); 
+                  }}
+                >
+                  {item.label}
+                </a>
+              </li>
             ))}
-            <a href="/collections" className="block w-full text-center bg-slate-900 text-white px-4 py-2 rounded">Shop</a>
-          </div>
+          </ul>
+          <a 
+            href="/contact" 
+            className="btn btn-primary nav-cta" 
+            onClick={(e) => { 
+              e.preventDefault(); 
+              navigate('/contact'); 
+              setIsMobileMenuOpen(false); 
+            }}
+          >
+            Get Started
+          </a>
         </div>
-      )}
+
+        <div 
+          className={`nav-toggle ${isMobileMenuOpen ? 'active' : ''}`} 
+          id="navToggle"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
     </header>
   );
 }

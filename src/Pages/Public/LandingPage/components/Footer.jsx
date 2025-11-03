@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Footer() {
+const Footer = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState({ text: '', type: '' });
 
@@ -18,7 +19,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-col">
-            <a href="/" className="footer-logo">
+            <Link to="/" className="footer-logo">
               <div className="logo-icon">
                 <svg viewBox="0 0 40 40" width="40" height="40">
                   <circle cx="20" cy="20" r="3" fill="#00ACD4"/>
@@ -32,41 +33,33 @@ export default function Footer() {
                 <span className="logo-omni">omni</span>
                 <span className="logo-brix">brix</span>
               </span>
-            </a>
+            </Link>
             <p className="footer-desc">Empowering businesses with AI super agents and intelligent automation solutions.</p>
             <div className="social-links">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Twitter">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="GitHub">
-                <i className="fab fa-github"></i>
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="YouTube">
-                <i className="fab fa-youtube"></i>
-              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link"><i className="fab fa-linkedin-in"></i></a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link"><i className="fab fa-twitter"></i></a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link"><i className="fab fa-github"></i></a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-link"><i className="fab fa-youtube"></i></a>
             </div>
           </div>
 
           <div className="footer-col">
             <h4>Services</h4>
             <ul className="footer-links">
-              <li><a href="/services">AI Consulting</a></li>
-              <li><a href="/services">AI Digital Roadmap</a></li>
-              <li><a href="/services">Build Custom Agents</a></li>
-              <li><a href="/services">Voice AI Solutions</a></li>
+              <li><Link to="/#services">AI Consulting</Link></li>
+              <li><Link to="/#services">AI Digital Roadmap</Link></li>
+              <li><Link to="/#services">Build Custom Agents</Link></li>
+              <li><Link to="/#services">Voice AI Solutions</Link></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <h4>Company</h4>
             <ul className="footer-links">
-              <li><a href="/about">About Us</a></li>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/contact">Contact</a></li>
-              <li><a href="/careers">Careers</a></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/#blog">Blog</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="#">Careers</Link></li>
             </ul>
           </div>
 
@@ -94,14 +87,16 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Omnibrix. All rights reserved.</p>
+          <p>&copy; 2024 Omnibrix. All rights reserved.</p>
           <div className="footer-bottom-links">
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms of Service</a>
-            <a href="/cookies">Cookie Policy</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
           </div>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

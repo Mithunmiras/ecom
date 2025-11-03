@@ -17,7 +17,7 @@ export default function MapSection() {
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
-              title="Luxe Jewels Location"
+              title="Omnibrix Location"
             ></iframe>
           </div>
         </Reveal>

@@ -20,8 +20,8 @@ export default function FooterSection() {
             {/* Brand */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img src="/brand/luxe-gem.svg" alt="Luxe Jewels" className="w-8 h-8" />
-                <span className="text-xl font-bold" style={{ color: 'var(--accent-gold)' }}>Luxe Jewels</span>
+                <img src="/brand/luxe-gem.svg" alt="Omnibrix" className="w-8 h-8" />
+                <span className="text-xl font-bold" style={{ color: 'var(--accent-gold)' }}>Omnibrix</span>
               </div>
               <p className="text-sm text-slate-400">
                 Crafting timeless elegance since 1990. We believe in creating jewelry that tells your unique story.
@@ -71,13 +71,13 @@ export default function FooterSection() {
               <ul className="space-y-3 text-sm text-slate-300">
                 <li><i className="fas fa-map-marker-alt mr-2" aria-hidden="true" /> 123 Luxury Ave, New York, NY 10001</li>
                 <li><i className="fas fa-phone mr-2" aria-hidden="true" /> +1 (234) 567-890</li>
-                <li><i className="fas fa-envelope mr-2" aria-hidden="true" /> info@luxejewels.com</li>
+                <li><i className="fas fa-envelope mr-2" aria-hidden="true" /> info@omnibrix.com</li>
               </ul>
             </div>
           </div>
 
           <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-slate-400">&copy; {year} Luxe Jewels. All rights reserved.</p>
+            <p className="text-sm text-slate-400">&copy; {year} Omnibrix. All rights reserved.</p>
             <div className="flex items-center gap-4 text-xl text-slate-300">
               <i className="fab fa-cc-visa" aria-hidden="true" />
               <i className="fab fa-cc-mastercard" aria-hidden="true" />

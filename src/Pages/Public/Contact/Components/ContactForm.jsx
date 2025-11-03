@@ -41,7 +41,7 @@ export default function ContactForm() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#C99700] focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-colors"
                 />
               </div>
               <div>
@@ -55,7 +55,7 @@ export default function ContactForm() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#C99700] focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-colors"
                 />
               </div>
             </div>
@@ -69,7 +69,7 @@ export default function ContactForm() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#C99700] focus:border-transparent transition-colors"
+            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-colors"
               />
             </div>
             <div>
@@ -83,7 +83,7 @@ export default function ContactForm() {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#C99700] focus:border-transparent transition-colors"
+            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-colors"
               />
             </div>
             <div>
@@ -97,12 +97,12 @@ export default function ContactForm() {
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#C99700] focus:border-transparent transition-colors resize-none"
+            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-colors resize-none"
               />
             </div>
             <button
               type="submit"
-              className="w-full md:w-auto px-8 py-3 bg-[#C99700] text-white font-semibold rounded-lg hover:bg-[#B8860B] transition-colors shadow-md hover:shadow-lg"
+                className="w-full md:w-auto px-8 py-3 bg-[#06B6D4] text-white font-semibold rounded-lg hover:bg-[#0EA5E9] transition-colors shadow-md hover:shadow-lg"
             >
               Send Message
             </button>
@@ -121,7 +121,7 @@ export default function ContactForm() {
             <p className="text-slate-600 mb-6">Thank you for contacting us. We'll get back to you within 24 hours.</p>
             <button
               onClick={() => setShowSuccess(false)}
-              className="px-6 py-2 bg-[#C99700] text-white font-semibold rounded-lg hover:bg-[#B8860B] transition-colors"
+                className="px-6 py-2 bg-[#06B6D4] text-white font-semibold rounded-lg hover:bg-[#0EA5E9] transition-colors"
             >
               Close
             </button>

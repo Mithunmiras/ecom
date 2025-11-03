@@ -46,7 +46,7 @@ export default function Process() {
               <div className="relative grid md:grid-cols-2 gap-8 items-start">
                 <div className={`flex items-start gap-4 ${i % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
                   <div className="relative z-10">
-                    <div className="w-12 h-12 rounded-full bg-[#C99700] text-white flex items-center justify-center font-bold shadow-md">
+                    <div className="w-12 h-12 rounded-full bg-[#06B6D4] text-white flex items-center justify-center font-bold shadow-md">
                       {s.num}
                     </div>
                   </div>

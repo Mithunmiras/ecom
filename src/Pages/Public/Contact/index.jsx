@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../LandingPage/components/Header.jsx';
-import FooterSection from '../LandingPage/components/FooterSection.jsx';
+import Footer from '../LandingPage/components/Footer.jsx';
 import PageHeader from './Components/PageHeader.jsx';
 import ContactForm from './Components/ContactForm.jsx';
 import ContactInfo from './Components/ContactInfo.jsx';
@@ -31,7 +31,7 @@ export default function ContactPage() {
         <MapSection />
         <FAQSection />
       </main>
-      <FooterSection />
+      <Footer />
     </div>
   );
 }
