@@ -1,69 +1,77 @@
 import React from 'react';
-import Reveal from '../../../../components/Reveal.jsx';
-
-const infoCards = [
-  {
-    icon: 'fa-map-marker-alt',
-    title: 'Visit Us',
-    content: ['123 Luxury Avenue', 'New York, NY 10001', 'United States']
-  },
-  {
-    icon: 'fa-phone',
-    title: 'Call Us',
-    content: ['Phone: +1 (234) 567-890', 'Toll-Free: 1-800-OMNIBRIX', 'Mon-Fri: 9AM - 6PM EST']
-  },
-  {
-    icon: 'fa-envelope',
-    title: 'Email Us',
-    content: ['General: info@omnibrix.com', 'Support: support@omnibrix.com', 'Sales: sales@omnibrix.com']
-  },
-  {
-    icon: 'fa-clock',
-    title: 'Business Hours',
-    content: ['Monday - Friday: 9:00 AM - 6:00 PM', 'Saturday: 10:00 AM - 4:00 PM', 'Sunday: Closed']
-  }
-];
+import { Link } from 'react-router-dom';
 
 export default function ContactInfo() {
   return (
-    <Reveal animation="animate-fadeInUp" delay="animation-delay-200">
-      <div className="space-y-6">
-        <h2 className="text-2xl md:text-3xl font-bold font-playfair text-slate-900">Contact Information</h2>
-        
-        <div className="space-y-4">
-          {infoCards.map((card, idx) => (
-            <div key={idx} className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-full bg-[#06B6D4] flex items-center justify-center flex-shrink-0">
-                <i className={`fas ${card.icon} text-white text-lg`} aria-hidden="true"></i>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-1">{card.title}</h3>
-                <div className="text-sm text-slate-600 space-y-0.5">
-                  {card.content.map((line, i) => (
-                    <p key={i}>{line}</p>
-                  ))}
-                </div>
-              </div>
+    <div className="contact-info-wrapper scroll-reveal" style={{ animationDelay: '0.2s' }}>
+      <div className="contact-info-card">
+        <h3>Contact Information</h3>
+        <p>Choose the way that best suits you to reach out.</p>
+
+        <div className="contact-info-list">
+          <div className="contact-info-item">
+            <div className="info-icon">
+              <i className="fas fa-envelope"></i>
             </div>
-          ))}
+            <div className="info-content">
+              <h4>Email</h4>
+              <a href="mailto:hello@omnibrix.ai">hello@omnibrix.ai</a>
+              <a href="mailto:support@omnibrix.ai">support@omnibrix.ai</a>
+            </div>
+          </div>
+
+          <div className="contact-info-item">
+            <div className="info-icon">
+              <i className="fas fa-phone-alt"></i>
+            </div>
+            <div className="info-content">
+              <h4>Phone</h4>
+              <a href="tel:+1-555-123-4567">+1 (555) 123-4567</a>
+              <p className="info-note">Mon-Fri, 9AM-6PM EST</p>
+            </div>
+          </div>
+
+          <div className="contact-info-item">
+            <div className="info-icon">
+              <i className="fas fa-map-marker-alt"></i>
+            </div>
+            <div className="info-content">
+              <h4>Office</h4>
+              <p>123 AI Innovation Drive<br />San Francisco, CA 94105<br />United States</p>
+            </div>
+          </div>
+
+          <div className="contact-info-item">
+            <div className="info-icon">
+              <i className="fas fa-clock"></i>
+            </div>
+            <div className="info-content">
+              <h4>Business Hours</h4>
+              <p>Monday - Friday: 9:00 AM - 6:00 PM EST<br />
+              Saturday - Sunday: Closed<br />
+              24/7 Support Available</p>
+            </div>
+          </div>
         </div>
 
-        {/* Social Connect */}
-        <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-100">
-          <h3 className="text-lg font-semibold text-slate-900 mb-4 text-center">Connect With Us</h3>
-          <div className="flex items-center justify-center gap-4">
-            {['fa-facebook-f', 'fa-instagram', 'fa-pinterest', 'fa-twitter'].map((icon, i) => (
-              <a
-                key={i}
-                href="#"
-                className="w-12 h-12 rounded-full bg-white border-2 border-[#06B6D4] flex items-center justify-center text-[#06B6D4] hover:bg-[#06B6D4] hover:text-white transition-colors shadow-sm"
-              >
-                <i className={`fab ${icon}`} aria-hidden="true"></i>
-              </a>
-            ))}
+        <div className="contact-social">
+          <h4>Follow Us</h4>
+          <div className="social-links">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-youtube"></i>
+            </a>
           </div>
         </div>
       </div>
-    </Reveal>
+    </div>
   );
 }

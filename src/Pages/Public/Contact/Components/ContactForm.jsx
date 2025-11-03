@@ -1,133 +1,181 @@
 import React, { useState } from 'react';
-import Reveal from '../../../../components/Reveal.jsx';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
-    subject: '',
-    message: ''
+    company: '',
+    service: '',
+    message: '',
+    newsletter: false
   });
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [message, setMessage] = useState({ text: '', type: '' });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate form submission
-    console.log('Contact form submitted:', formData);
-    setShowSuccess(true);
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setMessage({ 
+        text: "✓ Message sent successfully! We'll be in touch soon.", 
+        type: 'success' 
+      });
+      
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        company: '',
+        service: '',
+        message: '',
+        newsletter: false
+      });
+
+      // Clear message after 10 seconds
+      setTimeout(() => {
+        setMessage({ text: '', type: '' });
+      }, 10000);
+    } catch (error) {
+      setMessage({ 
+        text: '✗ Failed to send message. Please try again.', 
+        type: 'error' 
+      });
+    }
   };
 
   return (
-    <>
-      <Reveal animation="animate-fadeInUp">
-        <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6 md:p-8">
-          <h2 className="text-2xl md:text-3xl font-bold font-playfair text-slate-900 mb-6">Send Us a Message</h2>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
-                  Your Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-colors"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                  Your Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-colors"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-colors"
-              />
-            </div>
-            <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-slate-700 mb-2">
-                Subject *
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-colors"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-                Message *
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={6}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent transition-colors resize-none"
-              />
-            </div>
-            <button
-              type="submit"
-                className="w-full md:w-auto px-8 py-3 bg-[#06B6D4] text-white font-semibold rounded-lg hover:bg-[#0EA5E9] transition-colors shadow-md hover:shadow-lg"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
-      </Reveal>
+    <div className="contact-form-wrapper scroll-reveal">
+      <h2>Send Us a Message</h2>
+      <p>Fill out the form and we'll get back to you within 24 hours.</p>
 
-      {/* Success Modal */}
-      {showSuccess && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fadeIn" onClick={() => setShowSuccess(false)}>
-          <div className="bg-white rounded-xl shadow-2xl p-8 max-w-md mx-4 text-center animate-scaleIn" onClick={(e) => e.stopPropagation()}>
-            <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-              <i className="fas fa-check-circle text-3xl text-green-600"></i>
-            </div>
-            <h2 className="text-2xl font-bold font-playfair text-slate-900 mb-2">Message Sent!</h2>
-            <p className="text-slate-600 mb-6">Thank you for contacting us. We'll get back to you within 24 hours.</p>
-            <button
-              onClick={() => setShowSuccess(false)}
-                className="px-6 py-2 bg-[#06B6D4] text-white font-semibold rounded-lg hover:bg-[#0EA5E9] transition-colors"
-            >
-              Close
-            </button>
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="firstName">First Name *</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name *</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+            />
           </div>
         </div>
+
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="email">Email *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="company">Company Name</label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            value={formData.company}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="service">Interested In *</label>
+          <select
+            id="service"
+            name="service"
+            value={formData.service}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select a service</option>
+            <option value="AI Consulting">AI Consulting</option>
+            <option value="AI Digital Roadmap">AI Digital Roadmap</option>
+            <option value="Build Custom Agents">Build Custom Agents</option>
+            <option value="Voice AI Solutions">Voice AI Solutions</option>
+            <option value="General Inquiry">General Inquiry</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="message">Message *</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            value={formData.message}
+            onChange={handleChange}
+            required
+          ></textarea>
+        </div>
+
+        <div className="form-group">
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              name="newsletter"
+              id="newsletter"
+              checked={formData.newsletter}
+              onChange={handleChange}
+            />
+            <span>Subscribe to our newsletter for AI insights and updates</span>
+          </label>
+        </div>
+
+        <button type="submit" className="btn btn-primary btn-lg btn-block pulse-btn">
+          Send Message <i className="fas fa-paper-plane"></i>
+        </button>
+      </form>
+
+      {message.text && (
+        <div className={`form-message ${message.type}`}>
+          {message.text}
+        </div>
       )}
-    </>
+    </div>
   );
 }

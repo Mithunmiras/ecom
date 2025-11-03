@@ -1,74 +1,62 @@
 import React, { useState } from 'react';
-import Reveal from '../../../../components/Reveal.jsx';
 
 const faqs = [
   {
-    question: 'What are your shipping options?',
-    answer: 'We offer free standard shipping on orders over $200. Express shipping is available for an additional fee. All orders are insured and require signature upon delivery.'
+    question: 'How quickly can I deploy AI Super Agents?',
+    answer: 'Most businesses can deploy their first AI Super Agent within 24-48 hours. Our one-click deployment system makes it incredibly fast to get started. Complex enterprise deployments typically take 1-2 weeks including customization and integration.'
   },
   {
-    question: 'What is your return policy?',
-    answer: 'We offer a 30-day return policy for all items in original condition. Custom or engraved pieces cannot be returned unless defective.'
+    question: 'What pricing model do you offer?',
+    answer: 'We operate on a pay-per-use model - you only pay for the actions your AI Super Agents perform. No upfront costs, no hidden fees. Enterprise customers can opt for custom pricing based on volume and specific needs.'
   },
   {
-    question: 'Do you offer jewelry cleaning services?',
-  answer: 'Yes! We offer complimentary onboarding and technical reviews for our AI solutions. Contact our support team to arrange a review.'
+    question: 'Can I try before committing?',
+    answer: 'Absolutely! We offer a 14-day free trial with full access to all features. No credit card required. You can deploy up to 3 AI Super Agents and see the results firsthand before making any commitment.'
   },
   {
-    question: 'Can I customize a piece?',
-    answer: 'Absolutely! Our design team can work with you to create a custom piece. Contact us to schedule a consultation with one of our designers.'
+    question: 'What kind of support do you provide?',
+    answer: 'We provide 24/7 support through multiple channels including chat, email, and phone. Enterprise customers get dedicated account managers and priority support. We also offer comprehensive documentation, video tutorials, and regular webinars.'
   },
   {
-    question: 'Are your gemstones certified?',
-    answer: 'Yes, all diamonds over 0.5 carats come with certification from GIA or other recognized gemological laboratories. We provide authenticity certificates for all precious gemstones.'
+    question: 'How do you ensure data security?',
+    answer: 'Security is our top priority. We use enterprise-grade encryption, comply with GDPR and SOC 2 standards, and store data in secure, redundant data centers. We never share your data with third parties and offer on-premise deployment options for sensitive industries.'
   },
   {
-    question: 'Do you offer financing options?',
-    answer: 'We offer flexible procurement and pricing options for enterprise engagements. Contact sales for tailored proposals.'
+    question: 'Can AI Super Agents integrate with my existing systems?',
+    answer: 'Yes! Our AI Super Agents integrate seamlessly with 1000+ popular business tools including CRMs, project management software, communication platforms, and custom APIs. Our team can help with custom integrations if needed.'
   }
 ];
 
-function FAQItem({ faq, index }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <Reveal
-      animation="animate-fadeInUp"
-      delay={index === 0 ? '' : index === 1 ? 'animation-delay-100' : index === 2 ? 'animation-delay-200' : ''}
-    >
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition-colors"
-        >
-          <span className="font-semibold text-slate-900 pr-4">{faq.question}</span>
-          <i className={`fas fa-chevron-down text-[#06B6D4] transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true"></i>
-        </button>
-        <div
-          className={`px-6 overflow-hidden transition-all duration-300 ${
-            isOpen ? 'max-h-96 py-4 border-t border-slate-200' : 'max-h-0'
-          }`}
-        >
-          <p className="text-slate-600">{faq.answer}</p>
-        </div>
-      </div>
-    </Reveal>
-  );
-}
-
 export default function FAQSection() {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
   return (
-    <section className="py-16 md:py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <Reveal animation="animate-fadeInUp">
-            <h2 className="text-3xl md:text-4xl font-bold font-playfair text-slate-900">Frequently Asked Questions</h2>
-            <p className="mt-2 text-slate-600">Quick answers to common questions</p>
-          </Reveal>
+    <section className="faq-section section section-dark">
+      <div className="container">
+        <div className="section-header scroll-reveal">
+          <span className="section-badge">FAQ</span>
+          <h2>Frequently Asked Questions</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {faqs.map((faq, idx) => (
-            <FAQItem key={idx} faq={faq} index={idx} />
+
+        <div className="faq-grid">
+          {faqs.map((faq, index) => (
+            <div 
+              key={index} 
+              className={`faq-item scroll-reveal ${activeIndex === index ? 'active' : ''}`}
+              style={{ animationDelay: `${(index + 1) * 0.1}s` }}
+            >
+              <div className="faq-question" onClick={() => toggleFAQ(index)}>
+                <h4>{faq.question}</h4>
+                <i className="fas fa-plus"></i>
+              </div>
+              <div className="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>

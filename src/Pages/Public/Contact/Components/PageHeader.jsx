@@ -1,19 +1,38 @@
-import React from 'react';
-import Reveal from '../../../../components/Reveal.jsx';
+import React, { useEffect, useState } from 'react';
 
 export default function PageHeader() {
-  const bgUrl = "https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920";
+  const [displayedText, setDisplayedText] = useState('');
+  const fullText = "Let's Build Something Amazing";
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 50);
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
   return (
-    <section className="relative isolate" style={{
-      backgroundImage: `linear-gradient(135deg, rgba(201,151,0,0.9), rgba(139,69,19,0.8)), url(${bgUrl})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
-    }}>
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 text-white text-center">
-        <Reveal animation="animate-fadeInUp">
-          <h1 className="text-4xl md:text-5xl font-bold font-playfair">Get in Touch</h1>
-          <p className="mt-3 text-base md:text-lg text-amber-50/90">We'd love to hear from you</p>
-        </Reveal>
+    <section className="page-hero">
+      <div className="container">
+        <div className="page-hero-content">
+          <span className="page-badge fade-in-up">Get In Touch</span>
+          <h1 className="page-title">
+            <span className="typing-text">
+              {displayedText}
+              {displayedText.length < fullText.length && '|'}
+            </span>
+          </h1>
+          <p className="page-subtitle fade-in-up" style={{ animationDelay: '0.4s' }}>
+            Ready to transform your business with AI? Our experts are here to help. Get started with a free consultation.
+          </p>
+        </div>
       </div>
     </section>
   );
