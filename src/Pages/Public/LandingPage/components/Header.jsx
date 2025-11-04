@@ -68,19 +68,13 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              {location.pathname === '/' ? (
-                <a 
-                  href="#services" 
-                  className="nav-link" 
-                  onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}
-                >
-                  Services
-                </a>
-              ) : (
-                <Link to="/#services" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>
-                  Services
-                </Link>
-              )}
+              <Link 
+                to="/services" 
+                className={`nav-link ${isActive('/services') ? 'active' : ''}`}
+                onClick={() => handleNavClick('/services')}
+              >
+                Services
+              </Link>
             </li>
             <li className="nav-item">
               <Link 
