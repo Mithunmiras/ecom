@@ -1,97 +1,152 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
 
-const Footer = () => {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState({ text: '', type: '' });
-
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    if (email) {
-      setMessage({ text: '✓ Successfully subscribed!', type: 'success' });
-      setEmail('');
-      setTimeout(() => setMessage({ text: '', type: '' }), 5000);
-    }
-  };
-
+const FooterJewelry = () => {
   return (
-    <footer className="footer" id="footer">
-      <div className="container">
-        <div className="footer-content">
-          <div className="footer-col">
-            <Link to="/" className="footer-logo">
-              <div className="logo-icon">
-                <svg viewBox="0 0 40 40" width="40" height="40">
-                  <circle cx="20" cy="20" r="3" fill="#00ACD4"/>
-                  <circle cx="10" cy="10" r="2" fill="#00ACD4" opacity="0.8"/>
-                  <circle cx="30" cy="10" r="2" fill="#00ACD4" opacity="0.8"/>
-                  <circle cx="10" cy="30" r="2" fill="#00ACD4" opacity="0.8"/>
-                  <circle cx="30" cy="30" r="2" fill="#00ACD4" opacity="0.8"/>
-                </svg>
-              </div>
-              <span className="logo-text">
-                <span className="logo-omni">omni</span>
-                <span className="logo-brix">brix</span>
-              </span>
-            </Link>
-            <p className="footer-desc">Empowering businesses with AI super agents and intelligent automation solutions.</p>
-            <div className="social-links">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link"><i className="fab fa-linkedin-in"></i></a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link"><i className="fab fa-twitter"></i></a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link"><i className="fab fa-github"></i></a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-link"><i className="fab fa-youtube"></i></a>
+    <footer style={{
+      background: '#1a1a1a',
+      color: 'white',
+      padding: '4rem 0 2rem'
+    }}>
+      <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '3rem',
+          marginBottom: '3rem'
+        }}>
+          <div>
+            <div style={{
+              fontSize: '1.8rem',
+              fontWeight: '700',
+              marginBottom: '1rem',
+              color: '#FFD700',
+              fontFamily: 'Playfair Display, serif'
+            }}>
+              <i className="fas fa-gem" style={{ marginRight: '8px' }}></i>
+              <span>Luxe Jewels</span>
+            </div>
+            <p style={{ color: '#999', marginBottom: '1.5rem' }}>
+              Crafting timeless elegance since 1990. We believe in creating jewelry that tells your unique story.
+            </p>
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
+              {['facebook-f', 'instagram', 'pinterest', 'twitter'].map((icon, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '0.5rem',
+                    color: '#999',
+                    transition: 'all 0.3s ease',
+                    textDecoration: 'none'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.background = '#B8860B';
+                    e.currentTarget.style.color = 'white';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.color = '#999';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <i className={`fab fa-${icon}`}></i>
+                </a>
+              ))}
             </div>
           </div>
 
-          <div className="footer-col">
-            <h4>Services</h4>
-            <ul className="footer-links">
-              <li><Link to="/#services">AI Consulting</Link></li>
-              <li><Link to="/#services">AI Digital Roadmap</Link></li>
-              <li><Link to="/#services">Build Custom Agents</Link></li>
-              <li><Link to="/#services">Voice AI Solutions</Link></li>
+          <div>
+            <h4 style={{ fontSize: '1rem', marginBottom: '1rem', color: 'white' }}>Quick Links</h4>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              {['About Us', 'Shop', 'Contact', 'Size Guide', 'Care Instructions'].map((link, index) => (
+                <li key={index} style={{ marginBottom: '0.75rem' }}>
+                  <a
+                    href={`/${link.toLowerCase().replace(/\s+/g, '-')}`}
+                    style={{ color: '#999', textDecoration: 'none', transition: 'all 0.3s ease' }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.color = '#B8860B';
+                      e.currentTarget.style.paddingLeft = '0.5rem';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.color = '#999';
+                      e.currentTarget.style.paddingLeft = '0';
+                    }}
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div className="footer-col">
-            <h4>Company</h4>
-            <ul className="footer-links">
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/#blog">Blog</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-              <li><Link to="#">Careers</Link></li>
+          <div>
+            <h4 style={{ fontSize: '1rem', marginBottom: '1rem', color: 'white' }}>Customer Service</h4>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              {['Shipping Information', 'Returns & Exchanges', 'Privacy Policy', 'Terms & Conditions', 'FAQ'].map((link, index) => (
+                <li key={index} style={{ marginBottom: '0.75rem' }}>
+                  <a
+                    href="#"
+                    style={{ color: '#999', textDecoration: 'none', transition: 'all 0.3s ease' }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.color = '#B8860B';
+                      e.currentTarget.style.paddingLeft = '0.5rem';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.color = '#999';
+                      e.currentTarget.style.paddingLeft = '0';
+                    }}
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div className="footer-col">
-            <h4>Newsletter</h4>
-            <p>Subscribe to receive AI insights and updates.</p>
-            <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
-              <input 
-                type="email" 
-                placeholder="Your email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required 
-              />
-              <button type="submit" className="btn btn-primary">
-                <i className="fas fa-paper-plane"></i>
-              </button>
-            </form>
-            {message.text && (
-              <div className={`newsletter-message ${message.type}`}>
-                {message.text}
-              </div>
-            )}
+          <div>
+            <h4 style={{ fontSize: '1rem', marginBottom: '1rem', color: 'white' }}>Contact Us</h4>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '1rem', color: '#999' }}>
+                <i className="fas fa-map-marker-alt" style={{ marginTop: '0.25rem', color: '#B8860B' }}></i>
+                <span>123 Luxury Ave, New York, NY 10001</span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', color: '#999' }}>
+                <i className="fas fa-phone" style={{ color: '#B8860B' }}></i>
+                <a href="tel:+1234567890" style={{ color: '#999', textDecoration: 'none' }}>+1 (234) 567-890</a>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#999' }}>
+                <i className="fas fa-envelope" style={{ color: '#B8860B' }}></i>
+                <a href="mailto:info@luxejewels.com" style={{ color: '#999', textDecoration: 'none' }}>info@luxejewels.com</a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <p>&copy; 2024 Omnibrix. All rights reserved.</p>
-          <div className="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Cookie Policy</a>
+        <div style={{
+          paddingTop: '2rem',
+          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '1rem'
+        }}>
+          <p style={{ color: '#666', margin: 0 }}>
+            © 2025 Luxe Jewels. All rights reserved.
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', fontSize: '2rem', opacity: '0.6' }}>
+            <i className="fab fa-cc-visa"></i>
+            <i className="fab fa-cc-mastercard"></i>
+            <i className="fab fa-cc-amex"></i>
+            <i className="fab fa-cc-paypal"></i>
           </div>
         </div>
       </div>
@@ -99,4 +154,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterJewelry;

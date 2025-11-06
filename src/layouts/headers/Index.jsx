@@ -60,17 +60,17 @@ export default function Header() {
     <header className="header">
       {/* Top Bar */}
       <div className="top-bar">
-        <div className="container">
-          <div className="top-bar-content">
-            <div className="top-bar-left">
-              <a href="tel:+1234567890">
-                <i className="fas fa-phone"></i> +1 (234) 567-890
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="top-bar-content flex items-center justify-between gap-4">
+            <div className="top-bar-left flex items-center gap-6">
+              <a href="tel:+1234567890" className="flex items-center gap-2">
+                <i className="fas fa-phone"></i> <span className="hidden sm:inline">+1 (234) 567-890</span>
               </a>
-              <a href="mailto:info@luxejewels.com">
-                <i className="fas fa-envelope"></i> info@luxejewels.com
+              <a href="mailto:info@luxejewels.com" className="flex items-center gap-2">
+                <i className="fas fa-envelope"></i> <span className="hidden md:inline">info@luxejewels.com</span>
               </a>
             </div>
-            <div className="top-bar-right">
+            <div className="top-bar-right flex items-center gap-4">
               <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
               <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
               <a href="#" aria-label="Pinterest"><i className="fab fa-pinterest"></i></a>
@@ -81,8 +81,8 @@ export default function Header() {
 
       {/* Main Navigation */}
       <nav className="navbar">
-        <div className="container">
-          <div className="nav-content">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="nav-content flex items-center justify-between gap-8">
             {/* Logo */}
             <div className="logo">
               <a 
@@ -95,7 +95,7 @@ export default function Header() {
             </div>
 
             {/* Navigation Menu */}
-            <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`} id="navMenu">
+            <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''} flex items-center gap-8`} id="navMenu">
               {menuItems.map((item, index) => (
                 <li 
                   key={index} 

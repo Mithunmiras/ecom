@@ -1,24 +1,24 @@
 ﻿import React from 'react';
 import Header from '../../../layouts/headers/Index';
-import HeroJewelry from './components/HeroJewelry';
+import Hero from './components/Hero';
 import Categories from './components/Categories';
 import FeaturedProducts from './components/FeaturedProducts';
 import Testimonials from './components/Testimonials';
-import NewsletterSection from './components/NewsletterSection';
-import FooterJewelry from './components/FooterJewelry';
+import Newsletter from './components/Newsletter';
+import Footer from './components/Footer';
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen">
       <Header />
       <main>
-        <HeroJewelry />
+        <Hero />
         <Categories />
         <FeaturedProducts />
         <Testimonials />
-        <NewsletterSection />
+        <Newsletter />
       </main>
-      <FooterJewelry />
+      <Footer />
     </div>
   );
 }
