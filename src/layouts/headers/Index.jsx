@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [wishlistCount, setWishlistCount] = useState(0);
+  
   const navigate = useNavigate();
   const location = useLocation();
+  const { cartItems, getTotalItems } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,74 +22,192 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Get wishlist count from localStorage
+  useEffect(() => {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    setWishlistCount(wishlist.length);
+  }, []);
+
+  const cartCount = getTotalItems();
+
   const menuItems = [
     { label: "Home", path: "/" },
+    { label: "Shop", path: "/products" },
+    { 
+      label: "Collections", 
+      path: "#",
+      dropdown: [
+        { label: "Rings", path: "/products?category=rings" },
+        { label: "Necklaces", path: "/products?category=necklaces" },
+        { label: "Earrings", path: "/products?category=earrings" },
+        { label: "Bracelets", path: "/products?category=bracelets" },
+        { label: "Watches", path: "/products?category=watches" },
+      ]
+    },
     { label: "About", path: "/about" },
     { label: "Contact", path: "/contact" },
   ];
 
+  const handleNavigation = (e, path) => {
+    e.preventDefault();
+    if (path !== '#') {
+      navigate(path);
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`} id="header">
-      <nav className="nav container">
-        <a href="/" className="nav-logo" onClick={(e) => { e.preventDefault(); navigate('/'); }}>
-          <div className="logo-icon">
-            <svg viewBox="0 0 40 40" width="40" height="40">
-              <circle cx="20" cy="20" r="3" fill="#00ACD4" className="pulse-dot"/>
-              <circle cx="10" cy="10" r="2" fill="#00ACD4" opacity="0.8"/>
-              <circle cx="30" cy="10" r="2" fill="#00ACD4" opacity="0.8"/>
-              <circle cx="10" cy="30" r="2" fill="#00ACD4" opacity="0.8"/>
-              <circle cx="30" cy="30" r="2" fill="#00ACD4" opacity="0.8"/>
-              <circle cx="20" cy="5" r="1.5" fill="#86E3CE" opacity="0.6"/>
-              <circle cx="35" cy="20" r="1.5" fill="#86E3CE" opacity="0.6"/>
-              <circle cx="20" cy="35" r="1.5" fill="#86E3CE" opacity="0.6"/>
-              <circle cx="5" cy="20" r="1.5" fill="#86E3CE" opacity="0.6"/>
-            </svg>
+    <header className="header">
+      {/* Top Bar */}
+      <div className="top-bar">
+        <div className="container">
+          <div className="top-bar-content">
+            <div className="top-bar-left">
+              <a href="tel:+1234567890">
+                <i className="fas fa-phone"></i> +1 (234) 567-890
+              </a>
+              <a href="mailto:info@luxejewels.com">
+                <i className="fas fa-envelope"></i> info@luxejewels.com
+              </a>
+            </div>
+            <div className="top-bar-right">
+              <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Pinterest"><i className="fab fa-pinterest"></i></a>
+            </div>
           </div>
-          <span className="logo-text">
-            <span className="logo-omni">omni</span>
-            <span className="logo-brix">brix</span>
-          </span>
-        </a>
-
-        <div className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`} id="navMenu">
-          <ul className="nav-list">
-            {menuItems.map((item) => (
-              <li key={item.path} className="nav-item">
-                <a 
-                  href={item.path} 
-                  className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
-                  onClick={(e) => { 
-                    e.preventDefault(); 
-                    navigate(item.path);
-                    setIsMobileMenuOpen(false); 
-                  }}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <a 
-            href="/contact" 
-            className="btn btn-primary nav-cta" 
-            onClick={(e) => { 
-              e.preventDefault(); 
-              navigate('/contact'); 
-              setIsMobileMenuOpen(false); 
-            }}
-          >
-            Get Started
-          </a>
         </div>
+      </div>
 
-        <div 
-          className={`nav-toggle ${isMobileMenuOpen ? 'active' : ''}`} 
-          id="navToggle"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
+      {/* Main Navigation */}
+      <nav className="navbar">
+        <div className="container">
+          <div className="nav-content">
+            {/* Logo */}
+            <div className="logo">
+              <a 
+                href="/" 
+                onClick={(e) => handleNavigation(e, '/')}
+              >
+                <i className="fas fa-gem"></i>
+                <span>Luxe Jewels</span>
+              </a>
+            </div>
+
+            {/* Navigation Menu */}
+            <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`} id="navMenu">
+              {menuItems.map((item, index) => (
+                <li 
+                  key={index} 
+                  className={item.dropdown ? 'dropdown' : ''}
+                  onMouseEnter={() => item.dropdown && setIsDropdownOpen(true)}
+                  onMouseLeave={() => item.dropdown && setIsDropdownOpen(false)}
+                >
+                  <a 
+                    href={item.path}
+                    className={location.pathname === item.path ? 'active' : ''}
+                    onClick={(e) => handleNavigation(e, item.path)}
+                  >
+                    {item.label}
+                    {item.dropdown && <i className="fas fa-chevron-down"></i>}
+                  </a>
+                  {item.dropdown && (
+                    <ul className="dropdown-menu">
+                      {item.dropdown.map((subItem, subIndex) => (
+                        <li key={subIndex}>
+                          <a 
+                            href={subItem.path}
+                            onClick={(e) => handleNavigation(e, subItem.path)}
+                          >
+                            {subItem.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+
+            {/* Navigation Icons */}
+            <div className="nav-icons">
+              <a 
+                href="#" 
+                className="search-icon" 
+                id="searchToggle"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsSearchOpen(!isSearchOpen);
+                }}
+              >
+                <i className="fas fa-search"></i>
+              </a>
+              <a 
+                href="/account" 
+                onClick={(e) => handleNavigation(e, '/account')}
+              >
+                <i className="fas fa-user"></i>
+              </a>
+              <a 
+                href="#" 
+                id="wishlistIcon"
+                onClick={(e) => e.preventDefault()}
+              >
+                <i className="fas fa-heart"></i>
+                {wishlistCount > 0 && (
+                  <span className="badge" id="wishlistCount">{wishlistCount}</span>
+                )}
+              </a>
+              <a 
+                href="/cart" 
+                id="cartIcon"
+                onClick={(e) => handleNavigation(e, '/cart')}
+              >
+                <i className="fas fa-shopping-bag"></i>
+                {cartCount > 0 && (
+                  <span className="badge" id="cartCount">{cartCount}</span>
+                )}
+              </a>
+              <button 
+                className="mobile-toggle" 
+                id="mobileToggle"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <i className="fas fa-bars"></i>
+              </button>
+            </div>
+          </div>
+
+          {/* Search Bar */}
+          <div className={`search-bar ${isSearchOpen ? 'active' : ''}`} id="searchBar">
+            <div className="search-container">
+              <input 
+                type="text" 
+                placeholder="Search for jewelry..." 
+                id="searchInput"
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    const query = e.target.value;
+                    navigate(`/products?search=${query}`);
+                    setIsSearchOpen(false);
+                  }
+                }}
+              />
+              <button 
+                type="button" 
+                id="searchBtn"
+                onClick={() => {
+                  const searchInput = document.getElementById('searchInput');
+                  if (searchInput?.value) {
+                    navigate(`/products?search=${searchInput.value}`);
+                    setIsSearchOpen(false);
+                  }
+                }}
+              >
+                <i className="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
