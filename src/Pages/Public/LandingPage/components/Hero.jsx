@@ -51,30 +51,38 @@ const Hero = () => {
   }, [currentSlide]);
 
   return (
-    <section className="hero relative h-[600px] overflow-hidden">
-      <div className="hero-slider relative h-full">
+    <section className="hero">
+      <div className="hero-slider">
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`hero-slide absolute w-full h-full flex items-center transition-opacity duration-500 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ background: slide.background }}
+            className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
+            style={{ 
+              background: `linear-gradient(135deg, ${
+                index === 0 ? 'rgba(184, 134, 11, 0.9), rgba(139, 69, 19, 0.8)' :
+                index === 1 ? 'rgba(218, 165, 32, 0.9), rgba(184, 134, 11, 0.8)' :
+                'rgba(139, 69, 19, 0.9), rgba(101, 67, 33, 0.8)'
+              }), url('${
+                index === 0 ? 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1920' :
+                index === 1 ? 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1920' :
+                'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1920'
+              }') center/cover`
+            }}
           >
-            <div className="container mx-auto px-5">
-              <div className="hero-content text-center text-white max-w-[700px] mx-auto">
-                <span className="hero-subtitle block text-sm uppercase tracking-[3px] mb-4 text-[#FFD700]">
+            <div className="container mx-auto max-w-7xl px-6">
+              <div className="hero-content">
+                <span className="hero-subtitle">
                   {slide.subtitle}
                 </span>
-                <h1 className="hero-title text-5xl md:text-6xl lg:text-7xl font-bold mb-4 font-playfair">
+                <h1 className="hero-title">
                   {slide.title}
                 </h1>
-                <p className="hero-text text-lg md:text-xl mb-8 opacity-95">
+                <p className="hero-text">
                   {slide.text}
                 </p>
                 <a
                   href="/products"
-                  className="btn btn-primary inline-block py-3.5 px-8 bg-gold-primary text-white rounded-full font-medium transition-all duration-300 hover:bg-gold-dark hover:-translate-y-0.5 shadow-luxury"
+                  className="btn btn-primary"
                 >
                   {slide.buttonText}
                 </a>
@@ -86,28 +94,24 @@ const Hero = () => {
 
       {/* Navigation Buttons */}
       <button
-        className="hero-prev absolute left-5 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white border-none w-12 h-12 rounded-full cursor-pointer text-xl transition-all duration-300 z-10"
+        className="hero-prev"
         onClick={() => changeSlide(-1)}
       >
         <i className="fas fa-chevron-left"></i>
       </button>
       <button
-        className="hero-next absolute right-5 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white border-none w-12 h-12 rounded-full cursor-pointer text-xl transition-all duration-300 z-10"
+        className="hero-next"
         onClick={() => changeSlide(1)}
       >
         <i className="fas fa-chevron-right"></i>
       </button>
 
       {/* Dots Navigation */}
-      <div className="hero-dots absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2.5 z-10">
+      <div className="hero-dots">
         {slides.map((_, index) => (
           <div
             key={index}
-            className={`hero-dot w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
-              index === currentSlide
-                ? 'bg-[#FFD700] scale-110'
-                : 'bg-white/50 hover:bg-[#FFD700]'
-            }`}
+            className={`hero-dot ${index === currentSlide ? 'active' : ''}`}
             onClick={() => goToSlide(index)}
           ></div>
         ))}

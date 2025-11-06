@@ -3,130 +3,151 @@ import React from "react";
 const FeaturedProducts = () => {
   const products = [
     {
+      id: 1,
       name: "Elegant Gold Necklace",
-      price: "$299",
+      category: "Necklaces",
+      price: 299,
+      oldPrice: 399,
       image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400",
-      category: "Necklaces"
+      rating: 4.9,
+      reviews: 124,
+      badge: "New"
     },
     {
+      id: 2,
       name: "Diamond Ring",
-      price: "$499",
+      category: "Rings",
+      price: 499,
+      oldPrice: 599,
       image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400",
-      category: "Rings"
+      rating: 5.0,
+      reviews: 89,
+      badge: "Featured"
     },
     {
+      id: 3,
       name: "Pearl Earrings",
-      price: "$199",
+      category: "Earrings",
+      price: 199,
       image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400",
-      category: "Earrings"
+      rating: 4.8,
+      reviews: 156
     },
     {
+      id: 4,
       name: "Gold Bracelet",
-      price: "$349",
+      category: "Bracelets",
+      price: 349,
+      oldPrice: 449,
       image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400",
-      category: "Bracelets"
+      rating: 4.9,
+      reviews: 92,
+      badge: "Sale"
+    },
+    {
+      id: 5,
+      name: "Sapphire Pendant",
+      category: "Necklaces",
+      price: 599,
+      image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400",
+      rating: 5.0,
+      reviews: 67
+    },
+    {
+      id: 6,
+      name: "Emerald Ring",
+      category: "Rings",
+      price: 799,
+      oldPrice: 899,
+      image: "https://images.unsplash.com/photo-1603561596112-0a132b757442?w=400",
+      rating: 4.9,
+      reviews: 43,
+      badge: "Hot"
+    },
+    {
+      id: 7,
+      name: "Diamond Studs",
+      category: "Earrings",
+      price: 399,
+      image: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400",
+      rating: 4.7,
+      reviews: 201
+    },
+    {
+      id: 8,
+      name: "Tennis Bracelet",
+      category: "Bracelets",
+      price: 899,
+      image: "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=400",
+      rating: 5.0,
+      reviews: 78,
+      badge: "Luxury"
     }
   ];
 
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    const stars = [];
+    
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<i key={`full-${i}`} className="fas fa-star"></i>);
+    }
+    if (hasHalfStar) {
+      stars.push(<i key="half" className="fas fa-star-half-alt"></i>);
+    }
+    
+    return stars;
+  };
+
   return (
-    <section className="featured" style={{ padding: '5rem 0' }}>
-      <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', marginBottom: '1rem', fontFamily: 'Playfair Display, serif' }}>
-            Featured Products
-          </h2>
-          <p style={{ fontSize: '1.125rem', color: '#666' }}>
-            Our most popular pieces
-          </p>
+    <section className="featured-products">
+      <div className="container mx-auto max-w-7xl px-6">
+        <div className="section-header">
+          <h2 className="section-title">Featured Collection</h2>
+          <p className="section-subtitle">Our most popular pieces</p>
         </div>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '2rem'
-        }}>
+        <div className="products-grid">
           {products.map((product, index) => (
-            <div
-              key={index}
-              style={{
-                background: 'white',
-                borderRadius: '10px',
-                overflow: 'hidden',
-                boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.boxShadow = '0 5px 25px rgba(0, 0, 0, 0.15)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-              }}
-            >
-              <div style={{ position: 'relative', height: '320px', overflow: 'hidden', background: '#f8f8f8' }}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                  onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                />
+            <div key={product.id} className={`product-card animate-delay-${(index % 4) + 1}`}>
+              <div className="product-image">
+                <img src={product.image} alt={product.name} />
+                {product.badge && (
+                  <span className="product-badge">{product.badge}</span>
+                )}
+                <div className="product-actions">
+                  <button className="action-btn" aria-label="Add to wishlist">
+                    <i className="far fa-heart"></i>
+                  </button>
+                  <button className="action-btn" aria-label="Quick view">
+                    <i className="far fa-eye"></i>
+                  </button>
+                </div>
               </div>
-              <div style={{ padding: '1.5rem' }}>
-                <div style={{ fontSize: '0.875rem', color: '#666', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                  {product.category}
+              <div className="product-info">
+                <div className="product-category">{product.category}</div>
+                <h3 className="product-name">{product.name}</h3>
+                <div className="product-rating">
+                  <span className="stars">{renderStars(product.rating)}</span>
+                  <span>({product.reviews})</span>
                 </div>
-                <h3 style={{ fontSize: '1.125rem', margin: '0.5rem 0', fontWeight: '600' }}>
-                  {product.name}
-                </h3>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  margin: '0.5rem 0',
-                  fontSize: '0.875rem'
-                }}>
-                  <span style={{ color: '#FFD700' }}>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </span>
-                  <span style={{ color: '#666' }}>(4.9)</span>
+                <div className="product-price">
+                  <span className="current-price">${product.price}</span>
+                  {product.oldPrice && (
+                    <span className="old-price">${product.oldPrice}</span>
+                  )}
                 </div>
-                <div style={{
-                  fontSize: '1.5rem',
-                  fontWeight: '700',
-                  color: '#B8860B',
-                  marginTop: '1rem'
-                }}>
-                  {product.price}
-                </div>
-                <a
-                  href="/product-detail"
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    marginTop: '1rem',
-                    padding: '0.75rem',
-                    background: '#B8860B',
-                    color: 'white',
-                    borderRadius: '50px',
-                    textAlign: 'center',
-                    textDecoration: 'none',
-                    fontWeight: '600',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onMouseOver={(e) => e.currentTarget.style.background = '#8B4513'}
-                  onMouseOut={(e) => e.currentTarget.style.background = '#B8860B'}
-                >
-                  View Details
-                </a>
+                <button className="btn btn-primary add-to-cart">
+                  Add to Cart
+                </button>
               </div>
             </div>
           ))}
+        </div>
+        <div className="text-center" style={{ marginTop: '3rem' }}>
+          <a href="/products" className="btn btn-outline">
+            View All Products
+          </a>
         </div>
       </div>
     </section>
