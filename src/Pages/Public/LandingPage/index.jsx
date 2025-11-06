@@ -1,24 +1,24 @@
 ﻿import React from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import WhyOmnibrix from './components/WhyOmnibrix';
-import CTA from './components/CTA';
-import BlogPreview from './components/BlogPreview';
-import Footer from './components/Footer';
+import Header from '../../../layouts/headers/Index';
+import HeroJewelry from './components/HeroJewelry';
+import Categories from './components/Categories';
+import FeaturedProducts from './components/FeaturedProducts';
+import Testimonials from './components/Testimonials';
+import NewsletterSection from './components/NewsletterSection';
+import FooterJewelry from './components/FooterJewelry';
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen">
       <Header />
       <main>
-        <Hero />
-        <Services />
-        <WhyOmnibrix />
-        <BlogPreview />
-        <CTA />
+        <HeroJewelry />
+        <Categories />
+        <FeaturedProducts />
+        <Testimonials />
+        <NewsletterSection />
       </main>
-      <Footer />
+      <FooterJewelry />
     </div>
   );
 }
