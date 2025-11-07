@@ -1,89 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { getFeaturedProducts } from "../../ProductPage/constant/products";
+import { CartContext } from "../../../../context/CartContext";
 
 const FeaturedProducts = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Elegant Gold Necklace",
-      category: "Necklaces",
-      price: 299,
-      oldPrice: 399,
-      image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400",
-      rating: 4.9,
-      reviews: 124,
-      badge: "New"
-    },
-    {
-      id: 2,
-      name: "Diamond Ring",
-      category: "Rings",
-      price: 499,
-      oldPrice: 599,
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400",
-      rating: 5.0,
-      reviews: 89,
-      badge: "Featured"
-    },
-    {
-      id: 3,
-      name: "Pearl Earrings",
-      category: "Earrings",
-      price: 199,
-      image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400",
-      rating: 4.8,
-      reviews: 156
-    },
-    {
-      id: 4,
-      name: "Gold Bracelet",
-      category: "Bracelets",
-      price: 349,
-      oldPrice: 449,
-      image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400",
-      rating: 4.9,
-      reviews: 92,
-      badge: "Sale"
-    },
-    {
-      id: 5,
-      name: "Sapphire Pendant",
-      category: "Necklaces",
-      price: 599,
-      image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400",
-      rating: 5.0,
-      reviews: 67
-    },
-    {
-      id: 6,
-      name: "Emerald Ring",
-      category: "Rings",
-      price: 799,
-      oldPrice: 899,
-      image: "https://images.unsplash.com/photo-1603561596112-0a132b757442?w=400",
-      rating: 4.9,
-      reviews: 43,
-      badge: "Hot"
-    },
-    {
-      id: 7,
-      name: "Diamond Studs",
-      category: "Earrings",
-      price: 399,
-      image: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400",
-      rating: 4.7,
-      reviews: 201
-    },
-    {
-      id: 8,
-      name: "Tennis Bracelet",
-      category: "Bracelets",
-      price: 899,
-      image: "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=400",
-      rating: 5.0,
-      reviews: 78,
-      badge: "Luxury"
-    }
-  ];
+  const products = getFeaturedProducts(8);
+  const { addToCart } = useContext(CartContext);
 
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
@@ -137,8 +58,11 @@ const FeaturedProducts = () => {
                     <span className="old-price">${product.oldPrice}</span>
                   )}
                 </div>
-                <button className="btn btn-primary add-to-cart">
-                  Add to Cart
+                <button 
+                  className="btn btn-primary add-to-cart"
+                  onClick={() => addToCart(product)}
+                >
+                  <i className="fas fa-shopping-bag"></i> Add to Cart
                 </button>
               </div>
             </div>

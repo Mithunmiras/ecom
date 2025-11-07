@@ -24,8 +24,19 @@ export default function Header() {
 
   // Get wishlist count from localStorage
   useEffect(() => {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    setWishlistCount(wishlist.length);
+    const updateWishlistCount = () => {
+      const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      setWishlistCount(wishlist.length);
+    };
+    
+    updateWishlistCount();
+    
+    // Listen for wishlist updates
+    window.addEventListener('wishlistUpdated', updateWishlistCount);
+    
+    return () => {
+      window.removeEventListener('wishlistUpdated', updateWishlistCount);
+    };
   }, []);
 
   const cartCount = getTotalItems();
@@ -149,9 +160,9 @@ export default function Header() {
                 <i className="fas fa-user"></i>
               </a>
               <a 
-                href="#" 
+                href="/wishlist" 
                 id="wishlistIcon"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => handleNavigation(e, '/wishlist')}
               >
                 <i className="fas fa-heart"></i>
                 {wishlistCount > 0 && (
