@@ -4,7 +4,30 @@ import { CartContext } from "../../../../context/CartContext";
 
 const FeaturedProducts = () => {
   const products = getFeaturedProducts(8);
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, showToast } = useContext(CartContext);
+
+  const addToWishlist = (product) => {
+    // Get current wishlist
+    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    
+    // Check if product already exists
+    const existingItem = wishlist.find(item => item.id === product.id);
+    
+    if (existingItem) {
+      showToast('Already in wishlist!', 'info');
+      return;
+    }
+    
+    // Add product to wishlist
+    wishlist.push(product);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    
+    // Dispatch event to update header count
+    window.dispatchEvent(new Event('wishlistUpdated'));
+    
+    // Show success toast
+    showToast('Successfully added to wishlist!', 'success');
+  };
 
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
@@ -37,7 +60,11 @@ const FeaturedProducts = () => {
                   <span className="product-badge">{product.badge}</span>
                 )}
                 <div className="product-actions">
-                  <button className="action-btn" aria-label="Add to wishlist">
+                  <button 
+                    className="action-btn" 
+                    aria-label="Add to wishlist"
+                    onClick={() => addToWishlist(product)}
+                  >
                     <i className="far fa-heart"></i>
                   </button>
                   <button className="action-btn" aria-label="Quick view">

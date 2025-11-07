@@ -4,7 +4,7 @@ import { CartContext } from '../../../../context/CartContext';
 
 export default function ProductsGrid({ products }) {
   const navigate = useNavigate();
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, showToast } = useContext(CartContext);
 
   const renderStars = (rating) => {
     const stars = [];
@@ -37,9 +37,9 @@ export default function ProductsGrid({ products }) {
       const event = new Event('wishlistUpdated');
       window.dispatchEvent(event);
       
-      alert('Added to wishlist!');
+      showToast('Successfully added to wishlist!', 'success');
     } else {
-      alert('Already in wishlist!');
+      showToast('Already in wishlist!', 'info');
     }
   };
 
