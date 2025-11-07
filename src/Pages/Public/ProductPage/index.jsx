@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import Header from '../../../layouts/headers/Index';
-import Footer from '../LandingPage/components/Footer';
 import FiltersSidebar from './Components/FiltersSidebar';
 import ProductsGrid from './Components/ProductsGrid';
 import Pagination from './Components/Pagination';
@@ -133,9 +131,7 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <Header />
-
+    <>
       {/* Breadcrumb */}
       <div className="breadcrumb">
         <div className="container mx-auto max-w-7xl px-6">
@@ -205,8 +201,6 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </>
   );
 }

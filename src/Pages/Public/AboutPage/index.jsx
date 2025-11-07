@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '../../../layouts/headers/Index';
-import Footer from '../LandingPage/components/Footer';
 import OurStory from './Components/OurStory';
 import Values from './Components/Values';
 import CraftsmanshipProcess from './Components/CraftsmanshipProcess';
@@ -8,9 +6,7 @@ import Stats from './Components/Stats';
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      
+    <>
       {/* Page Header */}
       <section 
         className="page-header"
@@ -28,8 +24,6 @@ export default function AboutPage() {
       <Values />
       <CraftsmanshipProcess />
       <Stats />
-
-      <Footer />
-    </div>
+    </>
   );
 }

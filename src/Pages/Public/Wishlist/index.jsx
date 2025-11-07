@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../../layouts/headers/Index';
-import Footer from '../LandingPage/components/Footer';
 import { CartContext } from '../../../context/CartContext';
 import WishlistItems from './Components/WishlistItems';
 import EmptyWishlist from './Components/EmptyWishlist';
@@ -57,9 +55,7 @@ export default function WishlistPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <Header />
-
+    <>
       {/* Breadcrumb */}
       <div className="breadcrumb">
         <div className="container mx-auto max-w-7xl px-6">
@@ -95,8 +91,6 @@ export default function WishlistPage() {
           )}
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </>
   );
 }

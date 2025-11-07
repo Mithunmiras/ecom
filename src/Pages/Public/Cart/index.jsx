@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../../layouts/headers/Index';
-import Footer from '../LandingPage/components/Footer';
 import { CartContext } from '../../../context/CartContext';
 import CartItems from './Components/CartItems';
 import CartSummary from './Components/CartSummary';
@@ -12,9 +10,7 @@ export default function CartPage() {
   const { cartItems } = useContext(CartContext);
 
   return (
-    <div className="min-h-screen">
-      <Header />
-
+    <>
       {/* Breadcrumb */}
       <div className="breadcrumb">
         <div className="container mx-auto max-w-7xl px-6">
@@ -39,8 +35,6 @@ export default function CartPage() {
           )}
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </>
   );
 }

@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Header from '../../../layouts/headers/Index';
-import Footer from '../LandingPage/components/Footer';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -64,9 +62,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      
+    <>
       {/* Page Header */}
       <section 
         className="page-header"
@@ -278,6 +274,6 @@ export default function ContactPage() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
