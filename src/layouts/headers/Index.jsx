@@ -7,6 +7,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const [wishlistCount, setWishlistCount] = useState(0);
   
   const navigate = useNavigate();
@@ -21,6 +22,31 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const navMenu = document.getElementById('navMenu');
+      const mobileToggle = document.getElementById('mobileToggle');
+      
+      if (isMobileMenuOpen && 
+          navMenu && 
+          !navMenu.contains(event.target) && 
+          mobileToggle && 
+          !mobileToggle.contains(event.target)) {
+        setIsMobileMenuOpen(false);
+        setActiveDropdown(null);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   // Get wishlist count from localStorage
   useEffect(() => {
@@ -64,6 +90,15 @@ export default function Header() {
     if (path !== '#') {
       navigate(path);
       setIsMobileMenuOpen(false);
+      setActiveDropdown(null);
+    }
+  };
+
+  const handleDropdownClick = (e, index) => {
+    e.preventDefault();
+    // Only toggle dropdown on mobile
+    if (window.innerWidth <= 968) {
+      setActiveDropdown(activeDropdown === index ? null : index);
     }
   };
 
@@ -110,14 +145,14 @@ export default function Header() {
               {menuItems.map((item, index) => (
                 <li 
                   key={index} 
-                  className={item.dropdown ? 'dropdown' : ''}
-                  onMouseEnter={() => item.dropdown && setIsDropdownOpen(true)}
-                  onMouseLeave={() => item.dropdown && setIsDropdownOpen(false)}
+                  className={`${item.dropdown ? 'dropdown' : ''} ${activeDropdown === index ? 'active' : ''}`}
+                  onMouseEnter={() => item.dropdown && window.innerWidth > 968 && setIsDropdownOpen(true)}
+                  onMouseLeave={() => item.dropdown && window.innerWidth > 968 && setIsDropdownOpen(false)}
                 >
                   <a 
                     href={item.path}
                     className={location.pathname === item.path ? 'active' : ''}
-                    onClick={(e) => handleNavigation(e, item.path)}
+                    onClick={(e) => item.dropdown ? handleDropdownClick(e, index) : handleNavigation(e, item.path)}
                   >
                     {item.label}
                     {item.dropdown && <i className="fas fa-chevron-down"></i>}
