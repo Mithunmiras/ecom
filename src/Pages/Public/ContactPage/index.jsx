@@ -254,8 +254,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <Footer />
-
       {/* Success Modal */}
       {showSuccessModal && (
         <div className="modal active">
