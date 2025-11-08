@@ -10,6 +10,7 @@ import ContactPage from './Pages/Public/ContactPage/index.jsx'
 import ProductPage from './Pages/Public/ProductPage/index.jsx'
 import CartPage from './Pages/Public/Cart/index.jsx'
 import WishlistPage from './Pages/Public/Wishlist/index.jsx'
+import AccountPage from './Pages/Public/Account/index.jsx'
 import LoginPage from './Pages/PrivateRouting/login/Index.jsx'
 import AdminRoutes from './Pages/PrivateRouting/Index.jsx'
 import PrivateRouteValidation from './PrivateRouteValidation/Index.jsx'
@@ -36,8 +37,9 @@ function AppContent() {
           <Route path="/products" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/account" element={<AccountPage />} />
           
-          {/* Login Route */}
+          {/* Admin Login Route */}
           <Route path="/login" element={<LoginPage />} />
           
           {/* Protected Admin Routes */}

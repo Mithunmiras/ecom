@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (email, password, role = 'customer') => {
     try {
       setLoading(true);
 
@@ -39,13 +39,13 @@ export const AuthProvider = ({ children }) => {
       // For now, accept any email/password for demo purposes
       if (email && password) {
         const mockUser = {
-          id: 1,
+          id: role === 'admin' ? 999 : Math.floor(Math.random() * 1000),
           email: email,
           name: email.split('@')[0],
-          role: 'admin'
+          role: role // 'admin' or 'customer'
         };
 
-        const mockToken = 'demo-token-' + Date.now();
+        const mockToken = `${role}-token-` + Date.now();
 
         localStorage.setItem('user', JSON.stringify(mockUser));
         localStorage.setItem('token', mockToken);
