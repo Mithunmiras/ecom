@@ -189,8 +189,9 @@ export default function Header() {
                 <i className="fas fa-search"></i>
               </a>
               <a 
-                href="/account" 
-                onClick={(e) => handleNavigation(e, '/account')}
+                href="/login" 
+                onClick={(e) => handleNavigation(e, '/login')}
+                title="Admin Login"
               >
                 <i className="fas fa-user"></i>
               </a>
