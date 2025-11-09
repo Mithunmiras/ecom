@@ -169,36 +169,23 @@ export default function LoginPage() {
                 Logging in...
               </span>
             ) : (
-              'Login'
-            )}
-          </button>
-        </form>
+            'Login'
+          )}
+        </button>
+      </form>
 
-        {/* Demo Credentials */}
-        <div className="mt-6 p-4 border rounded-lg" style={{
-          background: '#fef3e2',
-          borderColor: 'var(--primary-gold)'
-        }}>
-          <p className="text-sm font-medium mb-1" style={{ color: 'var(--dark-gold)' }}>
-            <i className="fas fa-info-circle mr-2"></i>Demo Mode
-          </p>
-          <p className="text-xs" style={{ color: 'var(--dark-gold)' }}>
-            Enter any email and password (min 3 chars) to login
-          </p>
-        </div>
-
-        {/* Back to Home */}
-        <div className="mt-6 text-center">
-          <button
-            onClick={() => navigate('/')}
-            className="text-sm font-medium hover:underline"
-            style={{ color: 'var(--primary-gold)' }}
-          >
-            <i className="fas fa-arrow-left mr-2"></i>
-            Back to Home
-          </button>
-        </div>
+      {/* Back to Home */}
+      <div className="mt-6 text-center">
+        <button
+          onClick={() => navigate('/')}
+          className="text-sm font-medium hover:underline"
+          style={{ color: 'var(--primary-gold)' }}
+        >
+          <i className="fas fa-arrow-left mr-2"></i>
+          Back to Home
+        </button>
       </div>
     </div>
+  </div>
   );
 }

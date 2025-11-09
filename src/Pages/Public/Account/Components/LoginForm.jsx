@@ -166,17 +166,6 @@ export default function LoginForm() {
           'Login to Your Account'
         )}
       </button>
-
-      {/* Demo Info */}
-      <div className="mt-4 p-3 border rounded-lg" style={{ 
-        background: '#fef3e2',
-        borderColor: 'var(--primary-gold)'
-      }}>
-        <p className="text-xs" style={{ color: 'var(--dark-gold)' }}>
-          <i className="fas fa-info-circle mr-2"></i>
-          <strong>Demo:</strong> Use any email and password (min 6 chars) to login
-        </p>
-      </div>
     </form>
   );
 }
