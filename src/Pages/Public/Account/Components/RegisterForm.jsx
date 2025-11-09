@@ -99,8 +99,10 @@ export default function RegisterForm() {
             onChange={handleInputChange}
             className={`w-full pl-10 pr-4 py-3 border ${
               errors.name ? 'border-red-500' : 'border-gray-300'
-            } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+            } rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
             placeholder="Enter your full name"
+            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+            onBlur={(e) => !errors.name && (e.target.style.borderColor = '#d1d5db')}
           />
         </div>
         {errors.name && (
@@ -125,8 +127,10 @@ export default function RegisterForm() {
             onChange={handleInputChange}
             className={`w-full pl-10 pr-4 py-3 border ${
               errors.email ? 'border-red-500' : 'border-gray-300'
-            } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+            } rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
             placeholder="Enter your email"
+            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+            onBlur={(e) => !errors.email && (e.target.style.borderColor = '#d1d5db')}
           />
         </div>
         {errors.email && (
@@ -149,8 +153,10 @@ export default function RegisterForm() {
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all"
             placeholder="Enter your phone number"
+            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
           />
         </div>
       </div>
@@ -172,8 +178,10 @@ export default function RegisterForm() {
             onChange={handleInputChange}
             className={`w-full pl-10 pr-4 py-3 border ${
               errors.password ? 'border-red-500' : 'border-gray-300'
-            } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+            } rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
             placeholder="Create a password"
+            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+            onBlur={(e) => !errors.password && (e.target.style.borderColor = '#d1d5db')}
           />
         </div>
         {errors.password && (
@@ -198,8 +206,10 @@ export default function RegisterForm() {
             onChange={handleInputChange}
             className={`w-full pl-10 pr-4 py-3 border ${
               errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
-            } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+            } rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
             placeholder="Confirm your password"
+            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+            onBlur={(e) => !errors.confirmPassword && (e.target.style.borderColor = '#d1d5db')}
           />
         </div>
         {errors.confirmPassword && (
@@ -225,7 +235,7 @@ export default function RegisterForm() {
             }`}
           />
           <label htmlFor="terms" className="ml-2 block text-sm text-gray-700">
-            I agree to the <a href="#" className="text-blue-600 hover:text-blue-800">Terms and Conditions</a> and <a href="#" className="text-blue-600 hover:text-blue-800">Privacy Policy</a>
+            I agree to the <a href="#" style={{ color: 'var(--primary-gold)' }} className="hover:underline">Terms and Conditions</a> and <a href="#" style={{ color: 'var(--primary-gold)' }} className="hover:underline">Privacy Policy</a>
           </label>
         </div>
         {errors.terms && (
@@ -240,8 +250,13 @@ export default function RegisterForm() {
         className={`w-full py-3 px-4 rounded-lg text-white font-medium transition-all ${
           loading 
             ? 'bg-gray-400 cursor-not-allowed' 
-            : 'bg-blue-600 hover:bg-blue-700 active:scale-95'
+            : 'active:scale-95'
         }`}
+        style={!loading ? { 
+          background: 'var(--primary-gold)',
+        } : {}}
+        onMouseEnter={(e) => !loading && (e.target.style.background = 'var(--dark-gold)')}
+        onMouseLeave={(e) => !loading && (e.target.style.background = 'var(--primary-gold)')}
       >
         {loading ? (
           <span className="flex items-center justify-center">
@@ -254,12 +269,15 @@ export default function RegisterForm() {
       </button>
 
       {/* Benefits */}
-      <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-        <p className="text-xs text-green-800 font-medium mb-2">
+      <div className="mt-4 p-3 border rounded-lg" style={{ 
+        background: '#fef3e2',
+        borderColor: 'var(--primary-gold)'
+      }}>
+        <p className="text-xs font-medium mb-2" style={{ color: 'var(--dark-gold)' }}>
           <i className="fas fa-check-circle mr-2"></i>
           Benefits of creating an account:
         </p>
-        <ul className="text-xs text-green-700 space-y-1 ml-6">
+        <ul className="text-xs space-y-1 ml-6" style={{ color: 'var(--dark-gold)' }}>
           <li>• Track your orders</li>
           <li>• Save items to wishlist</li>
           <li>• Faster checkout</li>

@@ -83,8 +83,11 @@ export default function LoginForm() {
             onChange={handleInputChange}
             className={`w-full pl-10 pr-4 py-3 border ${
               errors.email ? 'border-red-500' : 'border-gray-300'
-            } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+            } rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
+            style={{ focusRingColor: 'var(--primary-gold)' }}
             placeholder="Enter your email"
+            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+            onBlur={(e) => !errors.email && (e.target.style.borderColor = '#d1d5db')}
           />
         </div>
         {errors.email && (
@@ -109,8 +112,10 @@ export default function LoginForm() {
             onChange={handleInputChange}
             className={`w-full pl-10 pr-4 py-3 border ${
               errors.password ? 'border-red-500' : 'border-gray-300'
-            } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+            } rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
             placeholder="Enter your password"
+            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+            onBlur={(e) => !errors.password && (e.target.style.borderColor = '#d1d5db')}
           />
         </div>
         {errors.password && (
@@ -132,7 +137,7 @@ export default function LoginForm() {
             Remember me
           </label>
         </div>
-        <a href="#" className="text-sm text-blue-600 hover:text-blue-800 font-medium">
+        <a href="#" className="text-sm font-medium" style={{ color: 'var(--primary-gold)' }}>
           Forgot password?
         </a>
       </div>
@@ -144,8 +149,13 @@ export default function LoginForm() {
         className={`w-full py-3 px-4 rounded-lg text-white font-medium transition-all ${
           loading 
             ? 'bg-gray-400 cursor-not-allowed' 
-            : 'bg-blue-600 hover:bg-blue-700 active:scale-95'
+            : 'active:scale-95'
         }`}
+        style={!loading ? { 
+          background: 'var(--primary-gold)',
+        } : {}}
+        onMouseEnter={(e) => !loading && (e.target.style.background = 'var(--dark-gold)')}
+        onMouseLeave={(e) => !loading && (e.target.style.background = 'var(--primary-gold)')}
       >
         {loading ? (
           <span className="flex items-center justify-center">
@@ -158,8 +168,11 @@ export default function LoginForm() {
       </button>
 
       {/* Demo Info */}
-      <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-        <p className="text-xs text-blue-800">
+      <div className="mt-4 p-3 border rounded-lg" style={{ 
+        background: '#fef3e2',
+        borderColor: 'var(--primary-gold)'
+      }}>
+        <p className="text-xs" style={{ color: 'var(--dark-gold)' }}>
           <i className="fas fa-info-circle mr-2"></i>
           <strong>Demo:</strong> Use any email and password (min 6 chars) to login
         </p>

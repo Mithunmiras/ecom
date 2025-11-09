@@ -70,7 +70,9 @@ export default function AccountDashboard() {
               <div className="bg-white rounded-lg shadow-md p-6 sticky top-24">
                 {/* User Info */}
                 <div className="text-center pb-6 border-b border-gray-200">
-                  <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{
+                    background: 'linear-gradient(135deg, var(--primary-gold), var(--dark-gold))'
+                  }}>
                     <span className="text-2xl text-white font-bold">
                       {user?.name?.charAt(0).toUpperCase() || 'U'}
                     </span>
@@ -87,9 +89,12 @@ export default function AccountDashboard() {
                       onClick={() => setActiveSection(item.id)}
                       className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
                         activeSection === item.id
-                          ? 'bg-blue-600 text-white'
+                          ? 'text-white'
                           : 'text-gray-700 hover:bg-gray-100'
                       }`}
+                      style={activeSection === item.id ? {
+                        background: 'var(--primary-gold)'
+                      } : {}}
                     >
                       <i className={`fas ${item.icon}`}></i>
                       <span className="font-medium">{item.label}</span>
@@ -113,23 +118,29 @@ export default function AccountDashboard() {
                 {/* Overview Section */}
                 {activeSection === 'overview' && (
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Account Overview</h2>
+                    <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--primary-gold)' }}>Account Overview</h2>
                     
                     {/* Stats Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                      <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg p-6">
+                      <div className="text-white rounded-lg p-6" style={{
+                        background: 'linear-gradient(135deg, var(--primary-gold), var(--dark-gold))'
+                      }}>
                         <i className="fas fa-shopping-bag text-3xl mb-3 opacity-80"></i>
-                        <p className="text-blue-100 text-sm">Total Orders</p>
+                        <p className="text-sm opacity-90">Total Orders</p>
                         <p className="text-3xl font-bold mt-2">{orders.length}</p>
                       </div>
-                      <div className="bg-gradient-to-br from-pink-500 to-pink-600 text-white rounded-lg p-6">
+                      <div className="text-white rounded-lg p-6" style={{
+                        background: 'linear-gradient(135deg, #C77D3C, #8B4513)'
+                      }}>
                         <i className="fas fa-heart text-3xl mb-3 opacity-80"></i>
-                        <p className="text-pink-100 text-sm">Wishlist Items</p>
+                        <p className="text-sm opacity-90">Wishlist Items</p>
                         <p className="text-3xl font-bold mt-2">{wishlistItems.length}</p>
                       </div>
-                      <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg p-6">
+                      <div className="text-white rounded-lg p-6" style={{
+                        background: 'linear-gradient(135deg, #DAA520, #B8860B)'
+                      }}>
                         <i className="fas fa-award text-3xl mb-3 opacity-80"></i>
-                        <p className="text-green-100 text-sm">Reward Points</p>
+                        <p className="text-sm opacity-90">Reward Points</p>
                         <p className="text-3xl font-bold mt-2">450</p>
                       </div>
                     </div>
@@ -148,8 +159,12 @@ export default function AccountDashboard() {
                                 </div>
                                 <div className="text-right">
                                   <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
-                                    order.status === 'Delivered' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
-                                  }`}>
+                                    order.status === 'Delivered' ? 'bg-green-100 text-green-800' : ''
+                                  }`}
+                                  style={order.status !== 'Delivered' ? {
+                                    background: '#fef3e2',
+                                    color: 'var(--dark-gold)'
+                                  } : {}}>
                                     {order.status}
                                   </span>
                                   <p className="text-lg font-bold text-gray-800 mt-2">${order.total}</p>
@@ -169,30 +184,39 @@ export default function AccountDashboard() {
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <button
                           onClick={() => navigate('/products')}
-                          className="p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all text-center"
+                          className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-all text-center"
+                          style={{ '&:hover': { borderColor: 'var(--primary-gold)' }}}
+                          onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--primary-gold)'}
+                          onMouseLeave={(e) => e.currentTarget.style.borderColor = '#e5e7eb'}
                         >
-                          <i className="fas fa-shopping-bag text-2xl text-blue-600 mb-2"></i>
+                          <i className="fas fa-shopping-bag text-2xl mb-2" style={{ color: 'var(--primary-gold)' }}></i>
                           <p className="text-sm font-medium text-gray-800">Shop Now</p>
                         </button>
                         <button
                           onClick={() => navigate('/wishlist')}
-                          className="p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all text-center"
+                          className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-all text-center"
+                          onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--primary-gold)'}
+                          onMouseLeave={(e) => e.currentTarget.style.borderColor = '#e5e7eb'}
                         >
-                          <i className="fas fa-heart text-2xl text-pink-600 mb-2"></i>
+                          <i className="fas fa-heart text-2xl mb-2" style={{ color: '#C77D3C' }}></i>
                           <p className="text-sm font-medium text-gray-800">Wishlist</p>
                         </button>
                         <button
                           onClick={() => setActiveSection('orders')}
-                          className="p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all text-center"
+                          className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-all text-center"
+                          onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--primary-gold)'}
+                          onMouseLeave={(e) => e.currentTarget.style.borderColor = '#e5e7eb'}
                         >
-                          <i className="fas fa-box text-2xl text-green-600 mb-2"></i>
+                          <i className="fas fa-box text-2xl mb-2" style={{ color: 'var(--light-gold)' }}></i>
                           <p className="text-sm font-medium text-gray-800">Track Order</p>
                         </button>
                         <button
                           onClick={() => navigate('/contact')}
-                          className="p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all text-center"
+                          className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-all text-center"
+                          onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--primary-gold)'}
+                          onMouseLeave={(e) => e.currentTarget.style.borderColor = '#e5e7eb'}
                         >
-                          <i className="fas fa-headset text-2xl text-purple-600 mb-2"></i>
+                          <i className="fas fa-headset text-2xl mb-2" style={{ color: 'var(--dark-gold)' }}></i>
                           <p className="text-sm font-medium text-gray-800">Support</p>
                         </button>
                       </div>
@@ -203,7 +227,7 @@ export default function AccountDashboard() {
                 {/* Orders Section */}
                 {activeSection === 'orders' && (
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">My Orders</h2>
+                    <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--primary-gold)' }}>My Orders</h2>
                     {orders.length > 0 ? (
                       <div className="space-y-6">
                         {orders.map((order) => (
@@ -216,8 +240,12 @@ export default function AccountDashboard() {
                               </div>
                               <div className="text-right">
                                 <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
-                                  order.status === 'Delivered' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
-                                }`}>
+                                  order.status === 'Delivered' ? 'bg-green-100 text-green-800' : ''
+                                }`}
+                                style={order.status !== 'Delivered' ? {
+                                  background: '#fef3e2',
+                                  color: 'var(--dark-gold)'
+                                } : {}}>
                                   {order.status}
                                 </span>
                                 <p className="text-xl font-bold text-gray-800 mt-2">${order.total}</p>
@@ -245,7 +273,7 @@ export default function AccountDashboard() {
                 {/* Wishlist Section */}
                 {activeSection === 'wishlist' && (
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">My Wishlist</h2>
+                    <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--primary-gold)' }}>My Wishlist</h2>
                     {wishlistItems.length > 0 ? (
                       <p className="text-gray-600 mb-4">You have {wishlistItems.length} item(s) in your wishlist.</p>
                     ) : (
@@ -266,7 +294,7 @@ export default function AccountDashboard() {
                 {/* Profile Section */}
                 {activeSection === 'profile' && (
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">My Profile</h2>
+                    <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--primary-gold)' }}>My Profile</h2>
                     <div className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
@@ -274,7 +302,9 @@ export default function AccountDashboard() {
                           <input
                             type="text"
                             value={user?.name || ''}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+                            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                             readOnly
                           />
                         </div>
@@ -283,7 +313,9 @@ export default function AccountDashboard() {
                           <input
                             type="email"
                             value={user?.email || ''}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+                            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                             readOnly
                           />
                         </div>
@@ -292,14 +324,18 @@ export default function AccountDashboard() {
                           <input
                             type="tel"
                             placeholder="Add phone number"
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+                            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                           />
                         </div>
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
                           <input
                             type="date"
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                            onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+                            onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                           />
                         </div>
                       </div>
@@ -311,7 +347,7 @@ export default function AccountDashboard() {
                 {/* Settings Section */}
                 {activeSection === 'settings' && (
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Settings</h2>
+                    <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--primary-gold)' }}>Settings</h2>
                     <div className="space-y-6">
                       <div>
                         <h3 className="text-lg font-bold text-gray-800 mb-4">Change Password</h3>
@@ -320,21 +356,27 @@ export default function AccountDashboard() {
                             <label className="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
                             <input
                               type="password"
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                              onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+                              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">New Password</label>
                             <input
                               type="password"
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                              onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+                              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
                             <input
                               type="password"
-                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                              onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+                              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                             />
                           </div>
                           <button className="btn btn-primary">Update Password</button>

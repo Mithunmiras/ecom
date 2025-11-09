@@ -32,7 +32,7 @@ export default function AccountPage() {
           <div className="max-w-md mx-auto">
             {/* Header */}
             <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-gray-800 mb-2">My Account</h1>
+              <h1 className="text-4xl font-bold mb-2" style={{ color: 'var(--primary-gold)' }}>My Account</h1>
               <p className="text-gray-600">Login or create an account to get started</p>
             </div>
 
@@ -44,9 +44,14 @@ export default function AccountPage() {
                   onClick={() => setActiveTab('login')}
                   className={`flex-1 py-4 text-center font-medium transition-all ${
                     activeTab === 'login'
-                      ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                      ? 'border-b-2'
                       : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                   }`}
+                  style={activeTab === 'login' ? { 
+                    color: 'var(--primary-gold)', 
+                    borderColor: 'var(--primary-gold)',
+                    background: '#fef3e2'
+                  } : {}}
                 >
                   <i className="fas fa-sign-in-alt mr-2"></i>
                   Login
@@ -55,9 +60,14 @@ export default function AccountPage() {
                   onClick={() => setActiveTab('register')}
                   className={`flex-1 py-4 text-center font-medium transition-all ${
                     activeTab === 'register'
-                      ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
+                      ? 'border-b-2'
                       : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                   }`}
+                  style={activeTab === 'register' ? { 
+                    color: 'var(--primary-gold)', 
+                    borderColor: 'var(--primary-gold)',
+                    background: '#fef3e2'
+                  } : {}}
                 >
                   <i className="fas fa-user-plus mr-2"></i>
                   Register
@@ -73,7 +83,7 @@ export default function AccountPage() {
             {/* Additional Info */}
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
-                <i className="fas fa-shield-alt mr-2 text-green-600"></i>
+                <i className="fas fa-shield-alt mr-2" style={{ color: 'var(--primary-gold)' }}></i>
                 Your information is secure and will never be shared
               </p>
             </div>

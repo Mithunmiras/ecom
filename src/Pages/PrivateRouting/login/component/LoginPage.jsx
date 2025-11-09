@@ -64,11 +64,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 px-4">
+    <div className="flex justify-center items-center min-h-screen px-4" style={{
+      background: 'linear-gradient(135deg, rgba(184, 134, 11, 0.1), rgba(139, 69, 19, 0.1))'
+    }}>
       <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h2>
-          <p className="text-gray-600">Please login to your account</p>
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{
+            background: 'linear-gradient(135deg, var(--primary-gold), var(--dark-gold))'
+          }}>
+            <i className="fas fa-user-shield text-2xl text-white"></i>
+          </div>
+          <h2 className="text-3xl font-bold mb-2" style={{ color: 'var(--primary-gold)' }}>Admin Login</h2>
+          <p className="text-gray-600">Please login to access the admin panel</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -87,8 +94,10 @@ export default function LoginPage() {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={`w-full pl-10 pr-4 py-3 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                className={`w-full pl-10 pr-4 py-3 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
                 placeholder="Enter your email"
+                onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+                onBlur={(e) => !errors.email && (e.target.style.borderColor = '#d1d5db')}
               />
             </div>
             {errors.email && (
@@ -111,8 +120,10 @@ export default function LoginPage() {
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                className={`w-full pl-10 pr-4 py-3 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                className={`w-full pl-10 pr-4 py-3 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
                 placeholder="Enter your password"
+                onFocus={(e) => e.target.style.borderColor = 'var(--primary-gold)'}
+                onBlur={(e) => !errors.password && (e.target.style.borderColor = '#d1d5db')}
               />
             </div>
             {errors.password && (
@@ -132,7 +143,7 @@ export default function LoginPage() {
                 Remember me
               </label>
             </div>
-            <a href="#" className="text-sm text-blue-600 hover:text-blue-800 font-medium">
+            <a href="#" className="text-sm font-medium" style={{ color: 'var(--primary-gold)' }}>
               Forgot password?
             </a>
           </div>
@@ -144,8 +155,13 @@ export default function LoginPage() {
             className={`w-full py-3 px-4 rounded-lg text-white font-medium transition-all ${
               loading 
                 ? 'bg-gray-400 cursor-not-allowed' 
-                : 'bg-blue-600 hover:bg-blue-700 active:scale-95'
+                : 'active:scale-95'
             }`}
+            style={!loading ? { 
+              background: 'var(--primary-gold)',
+            } : {}}
+            onMouseEnter={(e) => !loading && (e.target.style.background = 'var(--dark-gold)')}
+            onMouseLeave={(e) => !loading && (e.target.style.background = 'var(--primary-gold)')}
           >
             {loading ? (
               <span className="flex items-center justify-center">
@@ -159,11 +175,14 @@ export default function LoginPage() {
         </form>
 
         {/* Demo Credentials */}
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <p className="text-sm text-blue-800 font-medium mb-1">
+        <div className="mt-6 p-4 border rounded-lg" style={{
+          background: '#fef3e2',
+          borderColor: 'var(--primary-gold)'
+        }}>
+          <p className="text-sm font-medium mb-1" style={{ color: 'var(--dark-gold)' }}>
             <i className="fas fa-info-circle mr-2"></i>Demo Mode
           </p>
-          <p className="text-xs text-blue-700">
+          <p className="text-xs" style={{ color: 'var(--dark-gold)' }}>
             Enter any email and password (min 3 chars) to login
           </p>
         </div>
@@ -172,7 +191,8 @@ export default function LoginPage() {
         <div className="mt-6 text-center">
           <button
             onClick={() => navigate('/')}
-            className="text-sm text-gray-600 hover:text-gray-800 font-medium"
+            className="text-sm font-medium hover:underline"
+            style={{ color: 'var(--primary-gold)' }}
           >
             <i className="fas fa-arrow-left mr-2"></i>
             Back to Home
