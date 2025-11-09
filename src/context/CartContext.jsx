@@ -73,7 +73,7 @@ export const CartProvider = ({ children }) => {
 
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => {
-      const price = typeof item.price === 'number' ? item.price : parseFloat(item.price.replace(/[₦$,]/g, ''));
+    const price = typeof item.price === 'number' ? item.price : parseFloat(item.price.replace(/[₹₦$,]/g, ''));
       return total + price * item.quantity;
     }, 0);
   };

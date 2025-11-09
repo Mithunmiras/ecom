@@ -167,7 +167,7 @@ export default function AccountDashboard() {
                                   } : {}}>
                                     {order.status}
                                   </span>
-                                  <p className="text-lg font-bold text-gray-800 mt-2">${order.total}</p>
+                                  <p className="text-lg font-bold text-gray-800 mt-2">₹{order.total.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                                 </div>
                               </div>
                             </div>
@@ -248,7 +248,7 @@ export default function AccountDashboard() {
                                 } : {}}>
                                   {order.status}
                                 </span>
-                                <p className="text-xl font-bold text-gray-800 mt-2">${order.total}</p>
+                                <p className="text-xl font-bold text-gray-800 mt-2">₹{order.total.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                               </div>
                             </div>
                             <div className="flex space-x-4">

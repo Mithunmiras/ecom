@@ -5,7 +5,7 @@ const Features = () => {
     {
       icon: "fa-shipping-fast",
       title: "Free Shipping",
-      description: "Free shipping on orders over $200"
+      description: "Free shipping on orders over ₹200"
     },
     {
       icon: "fa-shield-alt",

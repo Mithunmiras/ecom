@@ -102,9 +102,9 @@ export default function ProductsGrid({ products }) {
               <span className="reviews">({product.reviews})</span>
             </div>
             <div className="product-price">
-              <span className="current-price">${product.price.toLocaleString()}</span>
+              <span className="current-price">₹{product.price.toLocaleString('en-IN')}</span>
               {product.oldPrice && (
-                <span className="old-price">${product.oldPrice.toLocaleString()}</span>
+                <span className="old-price">₹{product.oldPrice.toLocaleString('en-IN')}</span>
               )}
             </div>
             <button 

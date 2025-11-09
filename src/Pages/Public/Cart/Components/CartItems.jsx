@@ -47,7 +47,7 @@ export default function CartItems() {
               </button>
             </div>
             <div className="cart-item-price">
-              ${(item.price * item.quantity).toLocaleString()}
+              ₹{(item.price * item.quantity).toLocaleString('en-IN')}
             </div>
           </div>
           <div className="cart-item-actions">

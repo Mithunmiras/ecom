@@ -37,7 +37,7 @@ export default function ContactPage() {
   const faqItems = [
     {
       question: "What are your shipping options?",
-      answer: "We offer free standard shipping on orders over $200. Express shipping is available for an additional fee. All orders are insured and require signature upon delivery."
+      answer: "We offer free standard shipping on orders over ₹200. Express shipping is available for an additional fee. All orders are insured and require signature upon delivery."
     },
     {
       question: "What is your return policy?",

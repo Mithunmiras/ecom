@@ -22,22 +22,22 @@ export default function CartSummary() {
       
       <div className="summary-row">
         <span>Subtotal</span>
-        <span>${subtotal.toFixed(2)}</span>
+        <span>₹{subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
       </div>
       
       <div className="summary-row">
         <span>Shipping</span>
-        <span>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
+        <span>{shipping === 0 ? 'FREE' : `₹${shipping.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}</span>
       </div>
       
       <div className="summary-row">
         <span>Tax (8%)</span>
-        <span>${tax.toFixed(2)}</span>
+        <span>₹{tax.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
       </div>
       
       <div className="summary-row total">
         <span>Total</span>
-        <span>${total.toFixed(2)}</span>
+        <span>₹{total.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
       </div>
 
       {freeShippingRemaining > 0 && (
@@ -47,7 +47,7 @@ export default function CartSummary() {
           marginTop: '1rem',
           textAlign: 'center'
         }}>
-          Add ${freeShippingRemaining} more for free shipping!
+          Add ₹{Number(freeShippingRemaining).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} more for free shipping!
         </p>
       )}
 

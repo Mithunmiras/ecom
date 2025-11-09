@@ -80,9 +80,9 @@ const FeaturedProducts = () => {
                   <span>({product.reviews})</span>
                 </div>
                 <div className="product-price">
-                  <span className="current-price">${product.price}</span>
+                  <span className="current-price">₹{product.price.toLocaleString('en-IN')}</span>
                   {product.oldPrice && (
-                    <span className="old-price">${product.oldPrice}</span>
+                    <span className="old-price">₹{product.oldPrice.toLocaleString('en-IN')}</span>
                   )}
                 </div>
                 <button 

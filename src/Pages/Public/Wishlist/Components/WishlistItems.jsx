@@ -31,9 +31,9 @@ export default function WishlistItems({ items, onRemove, onMoveToCart }) {
             </div>
             
             <div className="product-price">
-              <span className="current-price">${item.price.toLocaleString()}</span>
+              <span className="current-price">₹{item.price.toLocaleString('en-IN')}</span>
               {item.oldPrice && (
-                <span className="old-price">${item.oldPrice.toLocaleString()}</span>
+                <span className="old-price">₹{item.oldPrice.toLocaleString('en-IN')}</span>
               )}
             </div>
             
